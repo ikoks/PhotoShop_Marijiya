@@ -90,6 +90,7 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
+            addImageToolStripButton = new ToolStripButton();
             zoomInToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSplitButton1 = new ToolStripSplitButton();
             BottomToolStripPanel = new ToolStripPanel();
@@ -97,11 +98,10 @@
             RightToolStripPanel = new ToolStripPanel();
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
-            pictureBox1 = new PictureBox();
-            toolStripButton8 = new ToolStripButton();
+            pictureBox = new PictureBox();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -130,21 +130,21 @@
             restoreToolStripMenuItem.ForeColor = SystemColors.ControlText;
             restoreToolStripMenuItem.Image = Properties.Resources.Restore;
             restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            restoreToolStripMenuItem.Size = new Size(144, 22);
+            restoreToolStripMenuItem.Size = new Size(180, 22);
             restoreToolStripMenuItem.Text = "Restore";
             // 
             // moveToolStripMenuItem
             // 
             moveToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             moveToolStripMenuItem.Name = "moveToolStripMenuItem";
-            moveToolStripMenuItem.Size = new Size(144, 22);
+            moveToolStripMenuItem.Size = new Size(180, 22);
             moveToolStripMenuItem.Text = "Move";
             // 
             // sizeToolStripMenuItem
             // 
             sizeToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
-            sizeToolStripMenuItem.Size = new Size(144, 22);
+            sizeToolStripMenuItem.Size = new Size(180, 22);
             sizeToolStripMenuItem.Text = "Size";
             // 
             // minimizeToolStripMenuItem
@@ -152,7 +152,7 @@
             minimizeToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             minimizeToolStripMenuItem.Image = Properties.Resources.minimize_12800555;
             minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            minimizeToolStripMenuItem.Size = new Size(144, 22);
+            minimizeToolStripMenuItem.Size = new Size(180, 22);
             minimizeToolStripMenuItem.Text = "Minimize";
             // 
             // maximizeToolStripMenuItem
@@ -160,7 +160,7 @@
             maximizeToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             maximizeToolStripMenuItem.Image = Properties.Resources.square_6215108;
             maximizeToolStripMenuItem.Name = "maximizeToolStripMenuItem";
-            maximizeToolStripMenuItem.Size = new Size(144, 22);
+            maximizeToolStripMenuItem.Size = new Size(180, 22);
             maximizeToolStripMenuItem.Text = "Maximize";
             // 
             // toolStripSeparator1
@@ -168,7 +168,7 @@
             toolStripSeparator1.BackColor = SystemColors.ControlLightLight;
             toolStripSeparator1.ForeColor = SystemColors.ControlLightLight;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(141, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // closeToolStripMenuItem
             // 
@@ -176,7 +176,7 @@
             closeToolStripMenuItem.Image = Properties.Resources.close_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
             closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             closeToolStripMenuItem.ShortcutKeys = Keys.Alt | Keys.F4;
-            closeToolStripMenuItem.Size = new Size(144, 22);
+            closeToolStripMenuItem.Size = new Size(180, 22);
             closeToolStripMenuItem.Text = "Close";
             // 
             // fileToolStripMenuItem
@@ -536,28 +536,28 @@
             // 
             zoomInToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            zoomInToolStripMenuItem.Size = new Size(125, 22);
+            zoomInToolStripMenuItem.Size = new Size(180, 22);
             zoomInToolStripMenuItem.Text = "Zoom In";
             // 
             // zoomOutToolStripMenuItem
             // 
             zoomOutToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            zoomOutToolStripMenuItem.Size = new Size(125, 22);
+            zoomOutToolStripMenuItem.Size = new Size(180, 22);
             zoomOutToolStripMenuItem.Text = "Zoom Out";
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.BackColor = SystemColors.ControlLightLight;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(125, 22);
+            toolStripMenuItem2.Size = new Size(180, 22);
             toolStripMenuItem2.Text = "100%";
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.BackColor = SystemColors.ControlLightLight;
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(125, 22);
+            toolStripMenuItem3.Size = new Size(180, 22);
             toolStripMenuItem3.Text = "200%";
             // 
             // helpToolStripMenuItem
@@ -574,18 +574,28 @@
             // 
             aboutToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(114, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "About...";
             // 
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.Left;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton8 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton });
             toolStrip1.Location = new Point(0, 26);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(32, 419);
+            toolStrip1.Size = new Size(24, 419);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
+            // 
+            // addImageToolStripButton
+            // 
+            addImageToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            addImageToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addImageToolStripButton.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
+            addImageToolStripButton.ImageTransparentColor = Color.Magenta;
+            addImageToolStripButton.Name = "addImageToolStripButton";
+            addImageToolStripButton.Size = new Size(21, 20);
+            addImageToolStripButton.Click += toolStripButton8_Click;
             // 
             // zoomInToolStripMenuItem1
             // 
@@ -643,27 +653,17 @@
             // 
             ContentPanel.Size = new Size(515, 235);
             // 
-            // pictureBox1
+            // pictureBox
             // 
-            pictureBox1.BackColor = SystemColors.Window;
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(32, 26);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(888, 419);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // toolStripButton8
-            // 
-            toolStripButton8.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton8.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton8.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton8.ImageTransparentColor = Color.Magenta;
-            toolStripButton8.Name = "toolStripButton8";
-            toolStripButton8.Size = new Size(29, 20);
-            toolStripButton8.Text = "toolStripButton1";
+            pictureBox.BackColor = SystemColors.Window;
+            pictureBox.Dock = DockStyle.Fill;
+            pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
+            pictureBox.Location = new Point(24, 26);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new Size(896, 419);
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox.TabIndex = 2;
+            pictureBox.TabStop = false;
             // 
             // Form1
             // 
@@ -671,7 +671,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(920, 445);
-            Controls.Add(pictureBox1);
+            Controls.Add(pictureBox);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -685,7 +685,7 @@
             menuStrip1.PerformLayout();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -760,7 +760,7 @@
         private ToolStripPanel RightToolStripPanel;
         private ToolStripPanel LeftToolStripPanel;
         private ToolStripContentPanel ContentPanel;
-        private PictureBox pictureBox1;
-        private ToolStripButton toolStripButton8;
+        private PictureBox pictureBox;
+        private ToolStripButton addImageToolStripButton;
     }
 }
