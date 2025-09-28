@@ -90,24 +90,15 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
-            toolStripButton1 = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            toolStripButton3 = new ToolStripButton();
-            toolStripButton4 = new ToolStripButton();
-            toolStripButton5 = new ToolStripButton();
-            toolStripButton6 = new ToolStripButton();
-            toolStripButton7 = new ToolStripButton();
             zoomInToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSplitButton1 = new ToolStripSplitButton();
-            toolStripSplitButton2 = new ToolStripSplitButton();
-            zoomInToolStripMenuItem2 = new ToolStripMenuItem();
-            zoomOutToolStripMenuItem1 = new ToolStripMenuItem();
             BottomToolStripPanel = new ToolStripPanel();
             TopToolStripPanel = new ToolStripPanel();
             RightToolStripPanel = new ToolStripPanel();
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
             pictureBox1 = new PictureBox();
+            toolStripButton8 = new ToolStripButton();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -589,83 +580,12 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.Left;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6, toolStripButton7, toolStripSplitButton2 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton8 });
             toolStrip1.Location = new Point(0, 26);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(33, 419);
+            toolStrip1.Size = new Size(32, 419);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            toolStripButton1.BackColor = SystemColors.Control;
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton1.Image = Properties.Resources.drag_pan_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(30, 20);
-            toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton2.Image = Properties.Resources.crop_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(30, 20);
-            toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton3.Image = Properties.Resources.brush_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(30, 20);
-            toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripButton4
-            // 
-            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton4.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton4.Image = Properties.Resources.ink_eraser_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton4.ImageTransparentColor = Color.Magenta;
-            toolStripButton4.Name = "toolStripButton4";
-            toolStripButton4.Size = new Size(30, 20);
-            toolStripButton4.Text = "toolStripButton4";
-            // 
-            // toolStripButton5
-            // 
-            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton5.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton5.Image = Properties.Resources.water_drop_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton5.ImageTransparentColor = Color.Magenta;
-            toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new Size(30, 20);
-            toolStripButton5.Text = "toolStripButton5";
-            // 
-            // toolStripButton6
-            // 
-            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton6.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton6.Image = Properties.Resources.title_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton6.ImageTransparentColor = Color.Magenta;
-            toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new Size(30, 20);
-            toolStripButton6.Text = "toolStripButton6";
-            // 
-            // toolStripButton7
-            // 
-            toolStripButton7.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton7.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripButton7.Image = Properties.Resources.rectangle_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripButton7.ImageTransparentColor = Color.Magenta;
-            toolStripButton7.Name = "toolStripButton7";
-            toolStripButton7.Size = new Size(30, 20);
-            toolStripButton7.Text = "toolStripButton7";
             // 
             // zoomInToolStripMenuItem1
             // 
@@ -686,31 +606,6 @@
             toolStripSplitButton1.Name = "toolStripSplitButton1";
             toolStripSplitButton1.Size = new Size(30, 20);
             toolStripSplitButton1.Text = "toolStripSplitButton1";
-            // 
-            // toolStripSplitButton2
-            // 
-            toolStripSplitButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripSplitButton2.DropDownItems.AddRange(new ToolStripItem[] { zoomInToolStripMenuItem2, zoomOutToolStripMenuItem1 });
-            toolStripSplitButton2.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            toolStripSplitButton2.Image = Properties.Resources.search_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            toolStripSplitButton2.ImageTransparentColor = Color.Magenta;
-            toolStripSplitButton2.Name = "toolStripSplitButton2";
-            toolStripSplitButton2.Size = new Size(30, 20);
-            toolStripSplitButton2.Text = "toolStripSplitButton2";
-            // 
-            // zoomInToolStripMenuItem2
-            // 
-            zoomInToolStripMenuItem2.Image = Properties.Resources.zoom_in_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            zoomInToolStripMenuItem2.Name = "zoomInToolStripMenuItem2";
-            zoomInToolStripMenuItem2.Size = new Size(180, 22);
-            zoomInToolStripMenuItem2.Text = "Zoom In";
-            // 
-            // zoomOutToolStripMenuItem1
-            // 
-            zoomOutToolStripMenuItem1.Image = Properties.Resources.zoom_out_25dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
-            zoomOutToolStripMenuItem1.Name = "zoomOutToolStripMenuItem1";
-            zoomOutToolStripMenuItem1.Size = new Size(180, 22);
-            zoomOutToolStripMenuItem1.Text = "Zoom Out";
             // 
             // BottomToolStripPanel
             // 
@@ -753,12 +648,22 @@
             pictureBox1.BackColor = SystemColors.Window;
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(33, 26);
+            pictureBox1.Location = new Point(32, 26);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(887, 419);
+            pictureBox1.Size = new Size(888, 419);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            // 
+            // toolStripButton8
+            // 
+            toolStripButton8.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            toolStripButton8.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            toolStripButton8.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
+            toolStripButton8.ImageTransparentColor = Color.Magenta;
+            toolStripButton8.Name = "toolStripButton8";
+            toolStripButton8.Size = new Size(29, 20);
+            toolStripButton8.Text = "toolStripButton1";
             // 
             // Form1
             // 
@@ -848,23 +753,14 @@
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem3;
         private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
-        private ToolStripButton toolStripButton4;
-        private ToolStripButton toolStripButton5;
-        private ToolStripButton toolStripButton6;
-        private ToolStripButton toolStripButton7;
         private ToolStripMenuItem zoomInToolStripMenuItem1;
         private ToolStripSplitButton toolStripSplitButton1;
-        private ToolStripSplitButton toolStripSplitButton2;
-        private ToolStripMenuItem zoomInToolStripMenuItem2;
-        private ToolStripMenuItem zoomOutToolStripMenuItem1;
         private ToolStripPanel BottomToolStripPanel;
         private ToolStripPanel TopToolStripPanel;
         private ToolStripPanel RightToolStripPanel;
         private ToolStripPanel LeftToolStripPanel;
         private ToolStripContentPanel ContentPanel;
         private PictureBox pictureBox1;
+        private ToolStripButton toolStripButton8;
     }
 }
