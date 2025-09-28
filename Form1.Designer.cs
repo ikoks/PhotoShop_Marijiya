@@ -679,7 +679,7 @@
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4);
             Name = "Form1";
-            Text = "PhotoShop Marijiya";
+            Text = "PhotoShop Mariji";
             Load += Form1_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
