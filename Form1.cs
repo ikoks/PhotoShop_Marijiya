@@ -12,9 +12,6 @@ namespace PhotoShop_Marijiya
 
         }
 
-        private void toolStripButton8_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }
