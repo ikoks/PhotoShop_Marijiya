@@ -12,6 +12,5 @@ namespace PhotoShop_Marijiya
 
         }
 
-     
     }
 }
