@@ -1,1 +1,1 @@
-# PhotoShop_Marijiya
+# PhotoShop_Mariji
