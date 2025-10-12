@@ -27,15 +27,27 @@ namespace PhotoShop_Marijiya
                 try
                 {
                     // Memuat gambar yang dipilih ke dalam PictureBox
-                    // Menggunakan Image.FromFile untuk membuat objek Image dari file
-                    pictureBox.Image = Image.FromFile(openFileDialog.FileName);
+                    string selectedImage = openFileDialog.FileName;
+                    pictureBox.Image = new System.Drawing.Bitmap(selectedImage);
 
-                    // Mengatur SizeMode untuk memastikan gambar sesuai dengan PictureBox
-                    // (Anda sudah mengatur ini ke Zoom di designer code, tapi ini untuk kepastian)
-                    pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
+                    if (pictureBox.Image != null)
+                    {
+                        int imgHeight = pictureBox.Image.Height;
+                        int imgWidth = pictureBox.Image.Width;
 
-                    // Opsional: Perbarui Text form dengan nama file yang dimuat
-                    this.Text = "PhotoShop Mariji - " + Path.GetFileName(openFileDialog.FileName);
+                        string message = $"Gambar berhasil dimuat!\n\n" +
+                                 $"File: {System.IO.Path.GetFileName(selectedImage)}\n" +
+                                 $"Ukuran: {imgWidth} x {imgHeight} pixels";
+
+                        MessageBox.Show(message);
+                    }
+                    else
+                    {
+                        MessageBox.Show("gagal memuat objek");
+                    }
+
+                        // Opsional: Perbarui Text form dengan nama file yang dimuat
+                        this.Text = "PhotoShop Mariji - " + Path.GetFileName(openFileDialog.FileName);
                 }
                 catch (Exception ex)
                 {
