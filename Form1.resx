@@ -124,6 +124,15 @@
     <value>132, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="saveAsTxtToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVEhL7ZNhEoQgCIXlph1lb9JROloRSj1bUHH/7fTN
+        vJEa8GFkeomyJUo7rzuxNLZFGH94HeIqQgOJDeF7jodMdNMIC0uNuiaaGCWb5OaaJrMGJwvMzGXmEyFt
+        AxjaLH9hIPfD5TeDoSFjQimQk0lMcLnwJhdKTnn65t7oQjeodXeqyvQMmLpAYr/AmNnzucY+QbMj78Q2
+        4Y7M/PAMOp8ocgJGExwZf1E2eMqGi1deJAm6A5VNm6KN15dRUjoAL7ie2pVtx0kAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="pictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABwgAAASwCAYAAADv4h4DAAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF7s
@@ -1494,15 +1503,6 @@
         AAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALAp
         IwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALApIwAAAAAA
         ALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALDo549fAcBUe4kARrsAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="saveAsTxtToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADASURBVEhL7ZNhEoQgCIXlph1lb9JROloRSj1bUHH/7fTN
-        vJEa8GFkeomyJUo7rzuxNLZFGH94HeIqQgOJDeF7jodMdNMIC0uNuiaaGCWb5OaaJrMGJwvMzGXmEyFt
-        AxjaLH9hIPfD5TeDoSFjQimQk0lMcLnwJhdKTnn65t7oQjeodXeqyvQMmLpAYr/AmNnzucY+QbMj78Q2
-        4Y7M/PAMOp8ocgJGExwZf1E2eMqGi1deJAm6A5VNm6KN15dRUjoAL7ie2pVtx0kAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
