@@ -78,6 +78,12 @@
             derajatToolStripMenuItem2 = new ToolStripMenuItem();
             derajatToolStripMenuItem3 = new ToolStripMenuItem();
             arbitrayToolStripMenuItem = new ToolStripMenuItem();
+            imageColorToolStripMenuItem = new ToolStripMenuItem();
+            redColorToolStripMenuItem = new ToolStripMenuItem();
+            greenColorToolStripMenuItem = new ToolStripMenuItem();
+            blueColorToolStripMenuItem = new ToolStripMenuItem();
+            grayscaleColorToolStripMenuItem = new ToolStripMenuItem();
+            normalImageToolStripMenuItem = new ToolStripMenuItem();
             selectToolStripMenuItem = new ToolStripMenuItem();
             allToolStripMenuItem = new ToolStripMenuItem();
             deselectToolStripMenuItem = new ToolStripMenuItem();
@@ -100,12 +106,7 @@
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
             pictureBox = new PictureBox();
-            imageColorToolStripMenuItem = new ToolStripMenuItem();
-            redColorToolStripMenuItem = new ToolStripMenuItem();
-            greenColorToolStripMenuItem = new ToolStripMenuItem();
-            blueColorToolStripMenuItem = new ToolStripMenuItem();
-            grayscaleColorToolStripMenuItem = new ToolStripMenuItem();
-            normalImageToolStripMenuItem = new ToolStripMenuItem();
+            histogramImageToolStripButton = new ToolStripButton();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
@@ -498,6 +499,43 @@
             arbitrayToolStripMenuItem.Size = new Size(186, 22);
             arbitrayToolStripMenuItem.Text = "Arbitray...";
             // 
+            // imageColorToolStripMenuItem
+            // 
+            imageColorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { redColorToolStripMenuItem, greenColorToolStripMenuItem, blueColorToolStripMenuItem, grayscaleColorToolStripMenuItem, normalImageToolStripMenuItem });
+            imageColorToolStripMenuItem.Name = "imageColorToolStripMenuItem";
+            imageColorToolStripMenuItem.Size = new Size(237, 22);
+            imageColorToolStripMenuItem.Text = "Image Set Color ";
+            // 
+            // redColorToolStripMenuItem
+            // 
+            redColorToolStripMenuItem.Name = "redColorToolStripMenuItem";
+            redColorToolStripMenuItem.Size = new Size(152, 22);
+            redColorToolStripMenuItem.Text = "Red Color";
+            // 
+            // greenColorToolStripMenuItem
+            // 
+            greenColorToolStripMenuItem.Name = "greenColorToolStripMenuItem";
+            greenColorToolStripMenuItem.Size = new Size(152, 22);
+            greenColorToolStripMenuItem.Text = "Green Color";
+            // 
+            // blueColorToolStripMenuItem
+            // 
+            blueColorToolStripMenuItem.Name = "blueColorToolStripMenuItem";
+            blueColorToolStripMenuItem.Size = new Size(152, 22);
+            blueColorToolStripMenuItem.Text = "Blue Color";
+            // 
+            // grayscaleColorToolStripMenuItem
+            // 
+            grayscaleColorToolStripMenuItem.Name = "grayscaleColorToolStripMenuItem";
+            grayscaleColorToolStripMenuItem.Size = new Size(152, 22);
+            grayscaleColorToolStripMenuItem.Text = "Grayscale Color";
+            // 
+            // normalImageToolStripMenuItem
+            // 
+            normalImageToolStripMenuItem.Name = "normalImageToolStripMenuItem";
+            normalImageToolStripMenuItem.Size = new Size(152, 22);
+            normalImageToolStripMenuItem.Text = "Normal Image";
+            // 
             // selectToolStripMenuItem
             // 
             selectToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
@@ -544,28 +582,28 @@
             // 
             zoomInToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             zoomInToolStripMenuItem.Name = "zoomInToolStripMenuItem";
-            zoomInToolStripMenuItem.Size = new Size(180, 22);
+            zoomInToolStripMenuItem.Size = new Size(125, 22);
             zoomInToolStripMenuItem.Text = "Zoom In";
             // 
             // zoomOutToolStripMenuItem
             // 
             zoomOutToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             zoomOutToolStripMenuItem.Name = "zoomOutToolStripMenuItem";
-            zoomOutToolStripMenuItem.Size = new Size(180, 22);
+            zoomOutToolStripMenuItem.Size = new Size(125, 22);
             zoomOutToolStripMenuItem.Text = "Zoom Out";
             // 
             // toolStripMenuItem2
             // 
             toolStripMenuItem2.BackColor = SystemColors.ControlLightLight;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(180, 22);
+            toolStripMenuItem2.Size = new Size(125, 22);
             toolStripMenuItem2.Text = "100%";
             // 
             // toolStripMenuItem3
             // 
             toolStripMenuItem3.BackColor = SystemColors.ControlLightLight;
             toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(180, 22);
+            toolStripMenuItem3.Size = new Size(125, 22);
             toolStripMenuItem3.Text = "200%";
             // 
             // helpToolStripMenuItem
@@ -582,17 +620,17 @@
             // 
             aboutToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(114, 22);
             aboutToolStripMenuItem.Text = "About...";
             // 
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.Left;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton });
             toolStrip1.Location = new Point(0, 34);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(29, 411);
+            toolStrip1.Size = new Size(32, 411);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -603,7 +641,7 @@
             addImageToolStripButton.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
             addImageToolStripButton.ImageTransparentColor = Color.Magenta;
             addImageToolStripButton.Name = "addImageToolStripButton";
-            addImageToolStripButton.Size = new Size(26, 28);
+            addImageToolStripButton.Size = new Size(29, 28);
             addImageToolStripButton.Text = "Add Image";
             addImageToolStripButton.Click += addImageToolStripButton_Click;
             // 
@@ -614,7 +652,7 @@
             saveAsTxtToolStripButton.Image = (Image)resources.GetObject("saveAsTxtToolStripButton.Image");
             saveAsTxtToolStripButton.ImageTransparentColor = Color.Magenta;
             saveAsTxtToolStripButton.Name = "saveAsTxtToolStripButton";
-            saveAsTxtToolStripButton.Size = new Size(26, 28);
+            saveAsTxtToolStripButton.Size = new Size(29, 28);
             saveAsTxtToolStripButton.Text = "Save As TXT";
             saveAsTxtToolStripButton.Click += saveImageTxtToolStripButton_Click;
             // 
@@ -679,49 +717,22 @@
             pictureBox.BackColor = SystemColors.Window;
             pictureBox.Dock = DockStyle.Fill;
             pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
-            pictureBox.Location = new Point(29, 34);
+            pictureBox.Location = new Point(32, 34);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(891, 411);
+            pictureBox.Size = new Size(888, 411);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
             // 
-            // imageColorToolStripMenuItem
+            // histogramImageToolStripButton
             // 
-            imageColorToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { redColorToolStripMenuItem, greenColorToolStripMenuItem, blueColorToolStripMenuItem, grayscaleColorToolStripMenuItem, normalImageToolStripMenuItem });
-            imageColorToolStripMenuItem.Name = "imageColorToolStripMenuItem";
-            imageColorToolStripMenuItem.Size = new Size(237, 22);
-            imageColorToolStripMenuItem.Text = "Image Set Color ";
-            // 
-            // redColorToolStripMenuItem
-            // 
-            redColorToolStripMenuItem.Name = "redColorToolStripMenuItem";
-            redColorToolStripMenuItem.Size = new Size(180, 22);
-            redColorToolStripMenuItem.Text = "Red Color";
-            // 
-            // greenColorToolStripMenuItem
-            // 
-            greenColorToolStripMenuItem.Name = "greenColorToolStripMenuItem";
-            greenColorToolStripMenuItem.Size = new Size(180, 22);
-            greenColorToolStripMenuItem.Text = "Green Color";
-            // 
-            // blueColorToolStripMenuItem
-            // 
-            blueColorToolStripMenuItem.Name = "blueColorToolStripMenuItem";
-            blueColorToolStripMenuItem.Size = new Size(180, 22);
-            blueColorToolStripMenuItem.Text = "Blue Color";
-            // 
-            // grayscaleColorToolStripMenuItem
-            // 
-            grayscaleColorToolStripMenuItem.Name = "grayscaleColorToolStripMenuItem";
-            grayscaleColorToolStripMenuItem.Size = new Size(180, 22);
-            grayscaleColorToolStripMenuItem.Text = "Grayscale Color";
-            // 
-            // normalImageToolStripMenuItem
-            // 
-            normalImageToolStripMenuItem.Name = "normalImageToolStripMenuItem";
-            normalImageToolStripMenuItem.Size = new Size(180, 22);
-            normalImageToolStripMenuItem.Text = "Normal Image";
+            histogramImageToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            histogramImageToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            histogramImageToolStripButton.Image = (Image)resources.GetObject("histogramImageToolStripButton.Image");
+            histogramImageToolStripButton.ImageTransparentColor = Color.Magenta;
+            histogramImageToolStripButton.Name = "histogramImageToolStripButton";
+            histogramImageToolStripButton.Size = new Size(29, 28);
+            histogramImageToolStripButton.Text = "Histogram Image";
             // 
             // Form1
             // 
@@ -827,5 +838,6 @@
         private ToolStripMenuItem blueColorToolStripMenuItem;
         private ToolStripMenuItem grayscaleColorToolStripMenuItem;
         private ToolStripMenuItem normalImageToolStripMenuItem;
+        private ToolStripButton histogramImageToolStripButton;
     }
 }
