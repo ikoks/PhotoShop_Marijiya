@@ -630,7 +630,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton });
             toolStrip1.Location = new Point(0, 34);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(32, 411);
+            toolStrip1.Size = new Size(29, 411);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -652,7 +652,7 @@
             saveAsTxtToolStripButton.Image = (Image)resources.GetObject("saveAsTxtToolStripButton.Image");
             saveAsTxtToolStripButton.ImageTransparentColor = Color.Magenta;
             saveAsTxtToolStripButton.Name = "saveAsTxtToolStripButton";
-            saveAsTxtToolStripButton.Size = new Size(29, 28);
+            saveAsTxtToolStripButton.Size = new Size(26, 28);
             saveAsTxtToolStripButton.Text = "Save As TXT";
             saveAsTxtToolStripButton.Click += saveImageTxtToolStripButton_Click;
             // 
@@ -717,9 +717,9 @@
             pictureBox.BackColor = SystemColors.Window;
             pictureBox.Dock = DockStyle.Fill;
             pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
-            pictureBox.Location = new Point(32, 34);
+            pictureBox.Location = new Point(29, 34);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(888, 411);
+            pictureBox.Size = new Size(891, 411);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
