@@ -1,5 +1,8 @@
 namespace PhotoShop_Marijiya
 {
+    using System;
+    using System.Diagnostics.Metrics;
+    using System.Windows.Forms.DataVisualization.Charting;
     public partial class Form1 : Form
     {
 
@@ -12,6 +15,8 @@ namespace PhotoShop_Marijiya
         // [y, x, 2] = Blue
         private byte[,,] pixelData;
         private Bitmap originalImage;
+        private Panel histogramPanel;
+        
         public Form1()
         {
             InitializeComponent();
@@ -181,6 +186,9 @@ namespace PhotoShop_Marijiya
 
             pictureBox.Image = bmp;
             MessageBox.Show("Efek warna merah diterapkan!");
+
+            // Refresh histogram
+            RefreshHistogram();
         }
 
         private void greenColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -206,6 +214,9 @@ namespace PhotoShop_Marijiya
 
             pictureBox.Image = bmp;
             MessageBox.Show("Efek warna hijau diterapkan!");
+
+            // Refresh histogram
+            RefreshHistogram();
         }
 
         private void blueColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,6 +242,9 @@ namespace PhotoShop_Marijiya
 
             pictureBox.Image = bmp;
             MessageBox.Show("Efek warna biru diterapkan!");
+
+            // Refresh histogram
+            RefreshHistogram();
         }
 
         private void grayscaleColorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -262,6 +276,9 @@ namespace PhotoShop_Marijiya
 
             pictureBox.Image = bmp;
             MessageBox.Show("Efek grayscale diterapkan!");
+
+            // Refresh histogram
+            RefreshHistogram();
         }
 
         private void normalImageToolStripMenuItem_Click(object sender, EventArgs e)
@@ -275,6 +292,174 @@ namespace PhotoShop_Marijiya
             // Tampilkan kembali gambar asli ke PictureBox
             pictureBox.Image = new Bitmap(originalImage);
             MessageBox.Show("Gambar dikembalikan ke kondisi normal!");
+
+            // Refresh histogram
+            RefreshHistogram();
+        }
+
+        // Helper untuk membuat chart histogram
+        private Chart CreateHistogramChart(String title, int[] histogramData, Color color)
+        {
+            Chart chart = new Chart
+            {
+                Height = 180, // tinggi tiap chart (sesuaikan)
+                Margin = new Padding(6)
+            };
+
+            ChartArea area = new ChartArea();
+            // atur sedikit margin supaya label terlihat
+            area.AxisX.Title = "Intensity";
+            area.AxisY.Title = "Count";
+            area.AxisX.Minimum = 0;
+            area.AxisX.Maximum = 255;
+            area.AxisX.Interval = 32; // tampil interval sumbu X
+            area.AxisY.IsStartedFromZero = true;
+            chart.ChartAreas.Add(area);
+
+            Series series = new Series
+            {
+                ChartType = SeriesChartType.Column,
+                IsVisibleInLegend = false,
+                ShadowOffset = 0
+            };
+
+            // tambahkan data bins (0..255)
+            for (int i = 0; i < histogramData.Length; i++)
+            {
+                DataPoint p = new DataPoint(i, histogramData[i]);
+                series.Points.Add(p);
+            }
+
+            // styling series (warna)
+            series.Color = color;
+
+            chart.Series.Add(series);
+
+            // judul chart
+            Title t = new Title
+            {
+                Text = title,
+                Docking = Docking.Top,
+                Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold)
+            };
+            chart.Titles.Add(t);
+
+            return chart;
+        }
+
+        private void ShowHistogramPanel()
+        {
+            // Cek apakah ada gambar
+            if (pictureBox.Image == null) return;
+
+            // Ambil Bitmap dan ukurannya langsung dari pictureBox
+            Bitmap bmp = new Bitmap(pictureBox.Image);
+            int height = bmp.Height;
+            int width = bmp.Width;
+
+            // inisialisasi data histogram (0..255)
+            int[] histR = new int[256];
+            int[] histG = new int[256];
+            int[] histB = new int[256];
+
+            // Hitung histogram dari Bitmap (pictureBox.Image) menggunakan GetPixel
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    Color pixelColor = bmp.GetPixel(x, y);
+                    histR[pixelColor.R]++;
+                    histG[pixelColor.G]++;
+                    histB[pixelColor.B]++;
+                }
+            }
+
+            // Buat panel baru di sisi kanan
+            histogramPanel = new Panel
+            {
+                Dock = DockStyle.Right,
+                Width = 380,
+                BackColor = Color.White,
+                AutoScroll = true,
+            };
+
+            // Buat container (FlowLayoutPanel) untuk menumpuk chart secara vertikal
+            FlowLayoutPanel fl = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+                AutoScroll = true
+            };
+
+            // buat chart R, G, B
+            Chart chartR = CreateHistogramChart("Histogram - Red", histR, Color.Red);
+            Chart chartG = CreateHistogramChart("Histogram - Green", histG, Color.Green);
+            Chart chartB = CreateHistogramChart("Histogram - Blue", histB, Color.Blue);
+
+            // tambahkan ke container
+            fl.Controls.Add(chartR);
+            fl.Controls.Add(chartG);
+            fl.Controls.Add(chartB);
+
+            // Buat Label untuk judul panel
+            Label lbl = new Label
+            {
+                Text = $"Histogram (Ukuran: {width} x {height})",
+                Height = 26,
+                Dock = DockStyle.Top,
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular)
+            };
+
+            // Tambahkan elemen ke panel
+            // Label
+            histogramPanel.Controls.Add(lbl);
+            // FlowLayoutPanel yang berisi chart
+            histogramPanel.Controls.Add(fl);
+
+            // Tambahkan panel ke Form
+            this.Controls.Add(histogramPanel);
+            // Bawa panel ke depan
+            histogramPanel.BringToFront();
+        }
+
+        private void RefreshHistogram()
+        {
+            // Cek apakah panelnya sedang terbuka
+            if (histogramPanel != null && this.Controls.Contains(histogramPanel))
+            {
+                // 1. Hapus panel yang lama
+                this.Controls.Remove(histogramPanel);
+                histogramPanel.Dispose();
+                histogramPanel = null;
+
+                // 2. Tampilkan panel yang baru dengan data ter-update
+                ShowHistogramPanel();
+            }
+            // Jika panel tidak terbuka, tidak melakukan apa-apa
+        }
+
+        private void histogramImageToolStripButton_Click(object sender, EventArgs e)
+        {
+            // Cek apakah ada gambar
+            if (pictureBox.Image == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Jika panel sudah ada (sudah terbuka), tutup (toggle)
+            if (histogramPanel != null && this.Controls.Contains(histogramPanel))
+            {
+                this.Controls.Remove(histogramPanel);
+                histogramPanel.Dispose();
+                histogramPanel = null;
+                return;
+            }
+
+            // Jika panel BELUM ada, panggil fungsi pembuatnya
+            ShowHistogramPanel();
         }
     }
 }
