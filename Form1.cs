@@ -11,6 +11,7 @@ namespace PhotoShop_Marijiya
         // [y, x, 1] = Green
         // [y, x, 2] = Blue
         private byte[,,] pixelData;
+        private Bitmap originalImage;
         public Form1()
         {
             InitializeComponent();
@@ -38,6 +39,9 @@ namespace PhotoShop_Marijiya
                     // Memuat gambar yang dipilih ke dalam PictureBox
                     string selectedImage = openFileDialog.FileName;
                     pictureBox.Image = new System.Drawing.Bitmap(selectedImage);
+
+                    // Simpan salinan gambar asli
+                    originalImage = new Bitmap(pictureBox.Image);
 
                     if (pictureBox.Image != null)
                     {
@@ -76,8 +80,8 @@ namespace PhotoShop_Marijiya
                         MessageBox.Show("gagal memuat objek");
                     }
 
-                        // Opsional: Perbarui Text form dengan nama file yang dimuat
-                        this.Text = "PhotoShop Mariji - " + Path.GetFileName(openFileDialog.FileName);
+                    // Opsional: Perbarui Text form dengan nama file yang dimuat
+                    this.Text = "PhotoShop Mariji - " + Path.GetFileName(openFileDialog.FileName);
                 }
                 catch (Exception ex)
                 {
@@ -143,7 +147,7 @@ namespace PhotoShop_Marijiya
                     }
                     // --- SELESAI MODIFIKASI ---
                     MessageBox.Show("File berhasil di simpan dari array", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 }
                 catch (Exception ex)
                 {
@@ -151,6 +155,126 @@ namespace PhotoShop_Marijiya
                     MessageBox.Show("Error saving file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void redColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte R = pixelData[y, x, 0];
+                    // Komponen G dan B dibuat 0 agar hasilnya hanya merah
+                    bmp.SetPixel(x, y, Color.FromArgb(R, 0, 0));
+                }
+            }
+
+            pictureBox.Image = bmp;
+            MessageBox.Show("Efek warna merah diterapkan!");
+        }
+
+        private void greenColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte G = pixelData[y, x, 1];
+                    bmp.SetPixel(x, y, Color.FromArgb(0, G, 0));
+                }
+            }
+
+            pictureBox.Image = bmp;
+            MessageBox.Show("Efek warna hijau diterapkan!");
+        }
+
+        private void blueColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte B = pixelData[y, x, 2];
+                    bmp.SetPixel(x, y, Color.FromArgb(0, 0, B));
+                }
+            }
+
+            pictureBox.Image = bmp;
+            MessageBox.Show("Efek warna biru diterapkan!");
+        }
+
+        private void grayscaleColorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte R = pixelData[y, x, 0];
+                    byte G = pixelData[y, x, 1];
+                    byte B = pixelData[y, x, 2];
+
+                    // Rumus grayscale sederhana (rata-rata)
+                    byte gray = (byte)((R + G + B) / 3);
+
+                    bmp.SetPixel(x, y, Color.FromArgb(gray, gray, gray));
+                }
+            }
+
+            pictureBox.Image = bmp;
+            MessageBox.Show("Efek grayscale diterapkan!");
+        }
+
+        private void normalImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (originalImage == null)
+            {
+                MessageBox.Show("Belum ada gambar yang dimuat.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tampilkan kembali gambar asli ke PictureBox
+            pictureBox.Image = new Bitmap(originalImage);
+            MessageBox.Show("Gambar dikembalikan ke kondisi normal!");
         }
     }
 }
