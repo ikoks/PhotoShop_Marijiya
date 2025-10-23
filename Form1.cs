@@ -387,6 +387,7 @@ namespace PhotoShop_Marijiya
             FlowLayoutPanel fl = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
+                Padding = new Padding(20),
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true
