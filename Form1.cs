@@ -302,7 +302,7 @@ namespace PhotoShop_Marijiya
         {
             Chart chart = new Chart
             {
-                Height = 180, // tinggi tiap chart (sesuaikan)
+                Height = 180, // tinggi tiap chart
                 Margin = new Padding(6)
             };
 
