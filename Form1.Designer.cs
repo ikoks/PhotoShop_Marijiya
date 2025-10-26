@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             menuStrip1 = new MenuStrip();
             logoToolStripMenuItem = new ToolStripMenuItem();
@@ -108,15 +107,14 @@
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
             pictureBox = new PictureBox();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            trackBar1 = new TrackBar();
+            sliderBar = new TrackBar();
             blackAndWhiteToolStripMenuItem = new ToolStripMenuItem();
             negativeToolStripMenuItem = new ToolStripMenuItem();
             detectionColorToolStripButton = new ToolStripButton();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -642,7 +640,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton, detectionColorToolStripButton });
             toolStrip1.Location = new Point(0, 34);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(32, 411);
+            toolStrip1.Size = new Size(29, 411);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -653,7 +651,7 @@
             addImageToolStripButton.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
             addImageToolStripButton.ImageTransparentColor = Color.Magenta;
             addImageToolStripButton.Name = "addImageToolStripButton";
-            addImageToolStripButton.Size = new Size(29, 28);
+            addImageToolStripButton.Size = new Size(26, 28);
             addImageToolStripButton.Text = "Add Image";
             addImageToolStripButton.Click += addImageToolStripButton_Click;
             // 
@@ -664,7 +662,7 @@
             saveAsTxtToolStripButton.Image = (Image)resources.GetObject("saveAsTxtToolStripButton.Image");
             saveAsTxtToolStripButton.ImageTransparentColor = Color.Magenta;
             saveAsTxtToolStripButton.Name = "saveAsTxtToolStripButton";
-            saveAsTxtToolStripButton.Size = new Size(29, 28);
+            saveAsTxtToolStripButton.Size = new Size(26, 28);
             saveAsTxtToolStripButton.Text = "Save As TXT";
             saveAsTxtToolStripButton.Click += saveImageTxtToolStripButton_Click;
             // 
@@ -675,7 +673,7 @@
             histogramImageToolStripButton.Image = (Image)resources.GetObject("histogramImageToolStripButton.Image");
             histogramImageToolStripButton.ImageTransparentColor = Color.Magenta;
             histogramImageToolStripButton.Name = "histogramImageToolStripButton";
-            histogramImageToolStripButton.Size = new Size(29, 28);
+            histogramImageToolStripButton.Size = new Size(26, 28);
             histogramImageToolStripButton.Text = "Histogram Image";
             histogramImageToolStripButton.Click += histogramImageToolStripButton_Click;
             // 
@@ -739,24 +737,20 @@
             // 
             pictureBox.BackColor = SystemColors.Window;
             pictureBox.Image = (Image)resources.GetObject("pictureBox.Image");
-            pictureBox.Location = new Point(48, 34);
+            pictureBox.Location = new Point(32, 34);
             pictureBox.Name = "pictureBox";
-            pictureBox.Size = new Size(872, 360);
+            pictureBox.Size = new Size(888, 360);
             pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
             // 
-            // contextMenuStrip1
+            // sliderBar
             // 
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
-            // 
-            // trackBar1
-            // 
-            trackBar1.Location = new Point(48, 400);
-            trackBar1.Name = "trackBar1";
-            trackBar1.Size = new Size(872, 45);
-            trackBar1.TabIndex = 3;
+            sliderBar.Location = new Point(32, 400);
+            sliderBar.Maximum = 255;
+            sliderBar.Name = "sliderBar";
+            sliderBar.Size = new Size(888, 45);
+            sliderBar.TabIndex = 3;
             // 
             // blackAndWhiteToolStripMenuItem
             // 
@@ -777,7 +771,7 @@
             detectionColorToolStripButton.Image = (Image)resources.GetObject("detectionColorToolStripButton.Image");
             detectionColorToolStripButton.ImageTransparentColor = Color.Magenta;
             detectionColorToolStripButton.Name = "detectionColorToolStripButton";
-            detectionColorToolStripButton.Size = new Size(29, 28);
+            detectionColorToolStripButton.Size = new Size(26, 28);
             detectionColorToolStripButton.Text = "Detection Color";
             // 
             // Form1
@@ -786,7 +780,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             ClientSize = new Size(920, 445);
-            Controls.Add(trackBar1);
+            Controls.Add(sliderBar);
             Controls.Add(pictureBox);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
@@ -802,7 +796,7 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sliderBar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -887,8 +881,7 @@
         private ToolStripMenuItem grayscaleColorToolStripMenuItem;
         private ToolStripMenuItem normalImageToolStripMenuItem;
         private ToolStripButton histogramImageToolStripButton;
-        private ContextMenuStrip contextMenuStrip1;
-        private TrackBar trackBar1;
+        private TrackBar sliderBar;
         private ToolStripMenuItem blackAndWhiteToolStripMenuItem;
         private ToolStripMenuItem negativeToolStripMenuItem;
         private ToolStripButton detectionColorToolStripButton;
