@@ -83,6 +83,8 @@
             greenColorToolStripMenuItem = new ToolStripMenuItem();
             blueColorToolStripMenuItem = new ToolStripMenuItem();
             grayscaleColorToolStripMenuItem = new ToolStripMenuItem();
+            blackAndWhiteToolStripMenuItem = new ToolStripMenuItem();
+            negativeToolStripMenuItem = new ToolStripMenuItem();
             normalImageToolStripMenuItem = new ToolStripMenuItem();
             selectToolStripMenuItem = new ToolStripMenuItem();
             allToolStripMenuItem = new ToolStripMenuItem();
@@ -99,6 +101,7 @@
             addImageToolStripButton = new ToolStripButton();
             saveAsTxtToolStripButton = new ToolStripButton();
             histogramImageToolStripButton = new ToolStripButton();
+            detectionColorToolStripButton = new ToolStripButton();
             zoomInToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSplitButton1 = new ToolStripSplitButton();
             BottomToolStripPanel = new ToolStripPanel();
@@ -108,9 +111,7 @@
             ContentPanel = new ToolStripContentPanel();
             pictureBox = new PictureBox();
             sliderBar = new TrackBar();
-            blackAndWhiteToolStripMenuItem = new ToolStripMenuItem();
-            negativeToolStripMenuItem = new ToolStripMenuItem();
-            detectionColorToolStripButton = new ToolStripButton();
+            brightnestoolStripButton = new ToolStripButton();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
@@ -539,6 +540,18 @@
             grayscaleColorToolStripMenuItem.Text = "Grayscale Color";
             grayscaleColorToolStripMenuItem.Click += grayscaleColorToolStripMenuItem_Click;
             // 
+            // blackAndWhiteToolStripMenuItem
+            // 
+            blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
+            blackAndWhiteToolStripMenuItem.Size = new Size(153, 22);
+            blackAndWhiteToolStripMenuItem.Text = "Black and White";
+            // 
+            // negativeToolStripMenuItem
+            // 
+            negativeToolStripMenuItem.Name = "negativeToolStripMenuItem";
+            negativeToolStripMenuItem.Size = new Size(153, 22);
+            negativeToolStripMenuItem.Text = "Negative";
+            // 
             // normalImageToolStripMenuItem
             // 
             normalImageToolStripMenuItem.Name = "normalImageToolStripMenuItem";
@@ -637,10 +650,10 @@
             // 
             toolStrip1.Dock = DockStyle.Left;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton, detectionColorToolStripButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { addImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton, brightnestoolStripButton, detectionColorToolStripButton });
             toolStrip1.Location = new Point(0, 34);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(29, 411);
+            toolStrip1.Size = new Size(32, 411);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -651,7 +664,7 @@
             addImageToolStripButton.Image = Properties.Resources.photo_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24;
             addImageToolStripButton.ImageTransparentColor = Color.Magenta;
             addImageToolStripButton.Name = "addImageToolStripButton";
-            addImageToolStripButton.Size = new Size(26, 28);
+            addImageToolStripButton.Size = new Size(29, 28);
             addImageToolStripButton.Text = "Add Image";
             addImageToolStripButton.Click += addImageToolStripButton_Click;
             // 
@@ -662,7 +675,7 @@
             saveAsTxtToolStripButton.Image = (Image)resources.GetObject("saveAsTxtToolStripButton.Image");
             saveAsTxtToolStripButton.ImageTransparentColor = Color.Magenta;
             saveAsTxtToolStripButton.Name = "saveAsTxtToolStripButton";
-            saveAsTxtToolStripButton.Size = new Size(26, 28);
+            saveAsTxtToolStripButton.Size = new Size(29, 28);
             saveAsTxtToolStripButton.Text = "Save As TXT";
             saveAsTxtToolStripButton.Click += saveImageTxtToolStripButton_Click;
             // 
@@ -673,9 +686,19 @@
             histogramImageToolStripButton.Image = (Image)resources.GetObject("histogramImageToolStripButton.Image");
             histogramImageToolStripButton.ImageTransparentColor = Color.Magenta;
             histogramImageToolStripButton.Name = "histogramImageToolStripButton";
-            histogramImageToolStripButton.Size = new Size(26, 28);
+            histogramImageToolStripButton.Size = new Size(29, 28);
             histogramImageToolStripButton.Text = "Histogram Image";
             histogramImageToolStripButton.Click += histogramImageToolStripButton_Click;
+            // 
+            // detectionColorToolStripButton
+            // 
+            detectionColorToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            detectionColorToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            detectionColorToolStripButton.Image = (Image)resources.GetObject("detectionColorToolStripButton.Image");
+            detectionColorToolStripButton.ImageTransparentColor = Color.Magenta;
+            detectionColorToolStripButton.Name = "detectionColorToolStripButton";
+            detectionColorToolStripButton.Size = new Size(29, 28);
+            detectionColorToolStripButton.Text = "Detection Color";
             // 
             // zoomInToolStripMenuItem1
             // 
@@ -752,27 +775,15 @@
             sliderBar.Size = new Size(888, 45);
             sliderBar.TabIndex = 3;
             // 
-            // blackAndWhiteToolStripMenuItem
+            // brightnestoolStripButton
             // 
-            blackAndWhiteToolStripMenuItem.Name = "blackAndWhiteToolStripMenuItem";
-            blackAndWhiteToolStripMenuItem.Size = new Size(153, 22);
-            blackAndWhiteToolStripMenuItem.Text = "Black and White";
-            // 
-            // negativeToolStripMenuItem
-            // 
-            negativeToolStripMenuItem.Name = "negativeToolStripMenuItem";
-            negativeToolStripMenuItem.Size = new Size(153, 22);
-            negativeToolStripMenuItem.Text = "Negative";
-            // 
-            // detectionColorToolStripButton
-            // 
-            detectionColorToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            detectionColorToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            detectionColorToolStripButton.Image = (Image)resources.GetObject("detectionColorToolStripButton.Image");
-            detectionColorToolStripButton.ImageTransparentColor = Color.Magenta;
-            detectionColorToolStripButton.Name = "detectionColorToolStripButton";
-            detectionColorToolStripButton.Size = new Size(26, 28);
-            detectionColorToolStripButton.Text = "Detection Color";
+            brightnestoolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            brightnestoolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            brightnestoolStripButton.Image = (Image)resources.GetObject("brightnestoolStripButton.Image");
+            brightnestoolStripButton.ImageTransparentColor = Color.Magenta;
+            brightnestoolStripButton.Name = "brightnestoolStripButton";
+            brightnestoolStripButton.Size = new Size(29, 28);
+            brightnestoolStripButton.Text = "Brightness Image";
             // 
             // Form1
             // 
@@ -885,5 +896,6 @@
         private ToolStripMenuItem blackAndWhiteToolStripMenuItem;
         private ToolStripMenuItem negativeToolStripMenuItem;
         private ToolStripButton detectionColorToolStripButton;
+        private ToolStripButton brightnestoolStripButton;
     }
 }
