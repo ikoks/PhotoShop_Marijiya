@@ -16,7 +16,7 @@ namespace PhotoShop_Marijiya
         private byte[,,] pixelData;
         private Bitmap originalImage;
         private Panel histogramPanel;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -285,6 +285,23 @@ namespace PhotoShop_Marijiya
 
             // Panggil fungsi pembuat yang baru
             ShowHistogramPanel();
+        }
+
+        private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Cek apakah ada gambar
+            if (pictureBox.Image == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // 2. Panggil kelas ImageProcessor untuk melakukan pekerjaan
+            pictureBox.Image = ImageProcessor.ApplyNegative(pixelData);
+
+            MessageBox.Show("Efek negatif diterapkan!");
+
+            RefreshHistogram();
         }
     }
 }
