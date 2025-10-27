@@ -290,7 +290,7 @@ namespace PhotoShop_Marijiya
         private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Cek apakah ada gambar
-            if (pictureBox.Image == null)
+            if (pixelData == null)
             {
                 MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
                 return;
