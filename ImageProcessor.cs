@@ -118,5 +118,35 @@ namespace PhotoShop_Marijiya
             }
             return bmp;
         }
+
+        // Fungsi Mengubah Foto Menjadi Black and White
+        public static Bitmap ApplyBlackAndWhite(byte[,,] pixelData, int threshold = 128)
+        {
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte R = pixelData[y, x, 0];
+                    byte G = pixelData[y, x, 1];
+                    byte B = pixelData[y, x, 2];
+
+                    // Hitung nilai grayscale
+                    byte gray = (byte)((0.299 * R) + (0.587 * G) + (0.114 * B));
+
+                    // Tentukan apakah piksel hitam atau putih
+                    byte bw = (gray >= threshold) ? (byte)255 : (byte)0;
+
+                    // Set piksel hasil ke bitmap
+                    bmp.SetPixel(x, y, Color.FromArgb(bw, bw, bw));
+                }
+            }
+
+            return bmp;
+        }
+
     }
 }

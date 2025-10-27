@@ -303,5 +303,22 @@ namespace PhotoShop_Marijiya
 
             RefreshHistogram();
         }
+
+        private void blackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Panggil fungsi dari kelas ImageProcessor
+            pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData);
+
+            MessageBox.Show("Efek Black & White diterapkan!");
+
+            // Refresh histogram agar menampilkan hasil baru
+            RefreshHistogram();
+        }
     }
 }
