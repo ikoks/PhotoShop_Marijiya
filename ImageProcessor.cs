@@ -27,7 +27,7 @@ namespace PhotoShop_Marijiya
                     byte B = pixelData[y, x, 2];
 
                     // Hitung nilai grayscale
-                    byte gray = (byte)((R + G + B) / 3);
+                    byte gray =(byte) ((0.299 * R) + (0.587 * G) + (0.114 * B));
 
                     // Set piksel di bitmap baru
                     bmp.SetPixel(x, y, Color.FromArgb(gray, gray, gray));
