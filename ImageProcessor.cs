@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace PhotoShop_Marijiya
 {
-    
+
     public static class ImageProcessor
     {
         // Fungsi Mengubah Foto Menjadi GrayScale
@@ -27,7 +27,7 @@ namespace PhotoShop_Marijiya
                     byte B = pixelData[y, x, 2];
 
                     // Hitung nilai grayscale
-                    byte gray =(byte) ((0.299 * R) + (0.587 * G) + (0.114 * B));
+                    byte gray = (byte)((0.299 * R) + (0.587 * G) + (0.114 * B));
 
                     // Set piksel di bitmap baru
                     bmp.SetPixel(x, y, Color.FromArgb(gray, gray, gray));
@@ -72,7 +72,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
-       //Fungsi Mengubah Foto Menjadi Biru
+        //Fungsi Mengubah Foto Menjadi Biru
         public static Bitmap ApplyBlueChannel(byte[,,] pixelData)
         {
             int height = pixelData.GetLength(0);
@@ -130,7 +130,7 @@ namespace PhotoShop_Marijiya
             {
                 for (int x = 0; x < width; x++)
                 {
-                    int gray = (pixelData[y, x, 0] + pixelData[y, x, 1] + pixelData[y, x, 2]) / 3;
+                    int gray = (int)((0.299 * pixelData[y, x, 0]) + (0.587 * pixelData[y, x, 1]) + (0.114 * pixelData[y, x, 2]));
                     Color newColor = (gray >= threshold) ? Color.White : Color.Black;
                     newBmp.SetPixel(x, y, newColor);
                 }
@@ -167,5 +167,35 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+
+
+        public static Bitmap ApplyColorDetection(byte[,,] pixelData, Color targetColor)
+        {
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    byte R = pixelData[y, x, 0];
+                    byte G = pixelData[y, x, 1];
+                    byte B = pixelData[y, x, 2];
+
+                    Color currentColor = Color.FromArgb(R, G, B);
+
+                    if (currentColor == targetColor)
+                    {
+                        bmp.SetPixel(x, y, currentColor); // Pertahankan warna asli
+                    }
+                    else
+                    {
+                        bmp.SetPixel(x, y, Color.Black); // Ubah jadi hitam
+                    }
+                }
+            }
+            return bmp;
+        }
     }
 }

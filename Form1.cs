@@ -6,9 +6,6 @@ namespace PhotoShop_Marijiya
     public partial class Form1 : Form
     {
 
-        // --- TAMBAHAN ---
-        // Deklarasi array 3D sebagai field.
-        // Ini bisa diakses oleh SEMUA method di dalam class Form1.
         // Format: [tinggi, lebar, 3]
         // [y, x, 0] = Red
         // [y, x, 1] = Green
@@ -32,7 +29,8 @@ namespace PhotoShop_Marijiya
         {
             None,
             Brightness,
-            BlackWhite
+            BlackWhite,
+            ColorDetection
         }
 
         // Variabel untuk menyimpan mode edit saat ini
@@ -255,10 +253,6 @@ namespace PhotoShop_Marijiya
             pictureBox.Image = new Bitmap(originalImage);
             MessageBox.Show("Gambar dikembalikan ke kondisi normal!");
 
-            //menonaktifkan slidebar
-            sliderBar.Visible = false;
-            currentMode = EditMode.None;
-
             // Refresh histogram
             RefreshHistogram();
         }
@@ -338,13 +332,22 @@ namespace PhotoShop_Marijiya
                 return;
             }
 
+            //Kondisional mematikan trackbar
+            if (currentMode == EditMode.BlackWhite)
+            {
+                sliderBar.Visible = false;      // Sembunyikan slider
+                currentMode = EditMode.None;    // Reset mode
+
+                return; // Selesai
+            }
+
             // Set mode edit ke Black & White
             currentMode = EditMode.BlackWhite;
 
             // Tampilkan slider
             sliderBar.Visible = true;
             sliderBar.Minimum = 0;
-            sliderBar.Maximum = 255;
+            sliderBar.Maximum = 256;
             sliderBar.Value = 128; // Nilai tengah default
             sliderBar.TickFrequency = 10;
 
@@ -365,11 +368,26 @@ namespace PhotoShop_Marijiya
                 return;
             }
 
-            // Set mode edit saat ini ke Brightness
+            //Kondisional mematikan trackbar
+            if (currentMode == EditMode.Brightness)
+            {
+                sliderBar.Visible = false;      // Sembunyikan slider
+                currentMode = EditMode.None;    // Reset mode
+
+                return; // Selesai
+            }
+
             currentMode = EditMode.Brightness;
 
             // Tampilkan slider dan atur propertinya
             sliderBar.Visible = true;
+            sliderBar.Minimum = -255;   // Atur rentang
+            sliderBar.Maximum = 255;
+            sliderBar.Value = 0;        // Atur nilai default
+            sliderBar.TickFrequency = 10;
+
+            pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, sliderBar.Value);
+
         }
 
         private void sliderBar_Scroll(object sender, EventArgs e)
@@ -394,6 +412,53 @@ namespace PhotoShop_Marijiya
             }
 
             RefreshHistogram();
+        }
+
+        private void pictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            Color pickedColor;
+
+            // Hanya aktif jika mode ColorDetection sedang berjalan
+            if (currentMode == EditMode.ColorDetection)
+            {
+                if (pixelData == null) return;
+
+                // Pastikan klik di dalam batas gambar
+                if (e.X < 0 || e.X >= pictureBox.Image.Width ||
+                    e.Y < 0 || e.Y >= pictureBox.Image.Height)
+                {
+                    return;
+                }
+
+                // Ambil warna dari posisi piksel yang diklik
+                // Penting: Ambil dari data piksel ASLI (pixelData) agar efek tidak menumpuk.
+                byte R = pixelData[e.Y, e.X, 0];
+                byte G = pixelData[e.Y, e.X, 1];
+                byte B = pixelData[e.Y, e.X, 2];
+
+                pickedColor = Color.FromArgb(R, G, B);
+
+                // Terapkan deteksi warna dengan warna yang baru dipilih
+                pictureBox.Image = ImageProcessor.ApplyColorDetection(pixelData, pickedColor);
+                RefreshHistogram();
+
+                //mematikan fungsi color detection
+                currentMode = EditMode.None;
+                pictureBox.Cursor = Cursors.Default;
+
+                MessageBox.Show($"Warna '{pickedColor.ToString()}' terdeteksi dan diterapkan.");
+            }
+        }
+
+        private void detectionColorToolStripButton_Click(object sender, EventArgs e)
+        {
+            if(pixelData == null)
+            {
+                MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
+            }
+
+            currentMode = EditMode.ColorDetection;
+            pictureBox.Cursor = Cursors.Cross;
         }
     }
 }
