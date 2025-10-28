@@ -124,28 +124,19 @@ namespace PhotoShop_Marijiya
         {
             int height = pixelData.GetLength(0);
             int width = pixelData.GetLength(1);
-            Bitmap bmp = new Bitmap(width, height);
+            Bitmap newBmp = new Bitmap(width, height);
 
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    byte R = pixelData[y, x, 0];
-                    byte G = pixelData[y, x, 1];
-                    byte B = pixelData[y, x, 2];
-
-                    // Hitung nilai grayscale
-                    byte gray = (byte)((0.299 * R) + (0.587 * G) + (0.114 * B));
-
-                    // Tentukan apakah piksel hitam atau putih
-                    byte bw = (gray >= threshold) ? (byte)255 : (byte)0;
-
-                    // Set piksel hasil ke bitmap
-                    bmp.SetPixel(x, y, Color.FromArgb(bw, bw, bw));
+                    int gray = (pixelData[y, x, 0] + pixelData[y, x, 1] + pixelData[y, x, 2]) / 3;
+                    Color newColor = (gray >= threshold) ? Color.White : Color.Black;
+                    newBmp.SetPixel(x, y, newColor);
                 }
             }
 
-            return bmp;
+            return newBmp;
         }
 
         // Fungsi mengubah kecerahan gambar / foto

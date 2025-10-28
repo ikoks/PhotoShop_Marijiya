@@ -32,6 +32,7 @@ namespace PhotoShop_Marijiya
         {
             None,
             Brightness,
+            BlackWhite
         }
 
         // Variabel untuk menyimpan mode edit saat ini
@@ -254,6 +255,10 @@ namespace PhotoShop_Marijiya
             pictureBox.Image = new Bitmap(originalImage);
             MessageBox.Show("Gambar dikembalikan ke kondisi normal!");
 
+            //menonaktifkan slidebar
+            sliderBar.Visible = false;
+            currentMode = EditMode.None;
+
             // Refresh histogram
             RefreshHistogram();
         }
@@ -333,13 +338,21 @@ namespace PhotoShop_Marijiya
                 return;
             }
 
-            // Panggil fungsi dari kelas ImageProcessor
-            pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData);
+            // Set mode edit ke Black & White
+            currentMode = EditMode.BlackWhite;
 
-            MessageBox.Show("Efek Black & White diterapkan!");
+            // Tampilkan slider
+            sliderBar.Visible = true;
+            sliderBar.Minimum = 0;
+            sliderBar.Maximum = 255;
+            sliderBar.Value = 128; // Nilai tengah default
+            sliderBar.TickFrequency = 10;
 
-            // Refresh histogram agar menampilkan hasil baru
+            // Tampilkan gambar awal
+            pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData, sliderBar.Value);
             RefreshHistogram();
+
+            MessageBox.Show("Geser slider untuk mengatur ambang batas Black & White.");
         }
 
         // Method untuk mengaktifkan mode brightness
@@ -361,22 +374,25 @@ namespace PhotoShop_Marijiya
 
         private void sliderBar_Scroll(object sender, EventArgs e)
         {
-            // Ambil nilai dari slider
-            int brightnessValue = sliderBar.Value;
+            if (pixelData == null) return;
 
-            // Terapkan efek berdasarkan mode edit saat ini
+            int value = sliderBar.Value;
+
             switch (currentMode)
             {
                 case EditMode.Brightness:
-                    // Panggil fungsi dari ImageProcessor untuk mengubah kecerahan
-                    pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, brightnessValue);
+                    pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, value);
                     break;
+
+                case EditMode.BlackWhite:
+                    pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData, value);
+                    break;
+
                 case EditMode.None:
                 default:
                     return;
             }
 
-            // Refresh histogram agar menampilkan hasil baru
             RefreshHistogram();
         }
     }
