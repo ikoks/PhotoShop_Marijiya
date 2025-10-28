@@ -27,6 +27,18 @@ namespace PhotoShop_Marijiya
 
         }
 
+        // Enum untuk mode edit
+        private enum EditMode
+        {
+            None,
+            Brightness,
+        }
+
+        // Variabel untuk menyimpan mode edit saat ini
+        private EditMode currentMode = EditMode.None;
+
+
+        // Method untuk menambahkan gambar
         private void addImageToolStripButton_Click(object sender, EventArgs e)
         {
             // Membuat sebuah instance dari OpenFileDialog
@@ -96,6 +108,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        // Method untuk menyimpan data gambar ke file .txt
         private void saveImageTxtToolStripButton_Click(object sender, EventArgs e)
         {
             // --- MODIFIKASI ---
@@ -162,6 +175,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        // Method untuk menerapkan efek warna merah
         private void redColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -178,6 +192,7 @@ namespace PhotoShop_Marijiya
             RefreshHistogram();
         }
 
+        // Method untuk menerapkan efek warna hijau
         private void greenColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -194,6 +209,7 @@ namespace PhotoShop_Marijiya
             RefreshHistogram();
         }
 
+        // Method untuk menerapkan efek warna biru
         private void blueColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -209,6 +225,7 @@ namespace PhotoShop_Marijiya
             RefreshHistogram();
         }
 
+        // Method untuk menerapkan efek grayscale
         private void grayscaleColorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -224,6 +241,7 @@ namespace PhotoShop_Marijiya
             RefreshHistogram();
         }
 
+        // Method untuk mengembalikan gambar ke kondisi normal
         private void normalImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (originalImage == null)
@@ -253,7 +271,7 @@ namespace PhotoShop_Marijiya
             histogramPanel.BringToFront();
         }
 
-
+        // Helper untuk menreset histogram
         private void RefreshHistogram()
         {
             if (histogramPanel != null && this.Controls.Contains(histogramPanel))
@@ -265,6 +283,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        // Method untuk menampilkan histogram
         private void histogramImageToolStripButton_Click(object sender, EventArgs e)
         {
             // Cek apakah ada gambar
@@ -287,6 +306,7 @@ namespace PhotoShop_Marijiya
             ShowHistogramPanel();
         }
 
+        // Method untuk menerapkan efek negatif
         private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Cek apakah ada gambar
@@ -304,6 +324,7 @@ namespace PhotoShop_Marijiya
             RefreshHistogram();
         }
 
+        // Method untuk menerapkan efek black & white
         private void blackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -316,6 +337,44 @@ namespace PhotoShop_Marijiya
             pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData);
 
             MessageBox.Show("Efek Black & White diterapkan!");
+
+            // Refresh histogram agar menampilkan hasil baru
+            RefreshHistogram();
+        }
+
+        // Method untuk mengaktifkan mode brightness
+        private void brightnestoolStripButton_Click(object sender, EventArgs e)
+        {
+            // Cek apakah ada gambar
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Set mode edit saat ini ke Brightness
+            currentMode = EditMode.Brightness;
+
+            // Tampilkan slider dan atur propertinya
+            sliderBar.Visible = true;
+        }
+
+        private void sliderBar_Scroll(object sender, EventArgs e)
+        {
+            // Ambil nilai dari slider
+            int brightnessValue = sliderBar.Value;
+
+            // Terapkan efek berdasarkan mode edit saat ini
+            switch (currentMode)
+            {
+                case EditMode.Brightness:
+                    // Panggil fungsi dari ImageProcessor untuk mengubah kecerahan
+                    pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, brightnessValue);
+                    break;
+                case EditMode.None:
+                default:
+                    return;
+            }
 
             // Refresh histogram agar menampilkan hasil baru
             RefreshHistogram();
