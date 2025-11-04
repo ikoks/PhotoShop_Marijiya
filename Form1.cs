@@ -30,7 +30,8 @@ namespace PhotoShop_Marijiya
             None,
             Brightness,
             BlackWhite,
-            ColorDetection
+            ColorDetection,
+            PlusImage
         }
 
         // Variabel untuk menyimpan mode edit saat ini
@@ -452,13 +453,39 @@ namespace PhotoShop_Marijiya
 
         private void detectionColorToolStripButton_Click(object sender, EventArgs e)
         {
-            if(pixelData == null)
+            if (pixelData == null)
             {
                 MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
             }
 
             currentMode = EditMode.ColorDetection;
             pictureBox.Cursor = Cursors.Cross;
+        }
+
+        private void plusImagePictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Hanya aktif jika mode PlusImage sedang berjalan
+            if (currentMode == EditMode.PlusImage)
+            {
+                // Pastikan klik di dalam batas gambar
+                if (e.Button == MouseButtons.Right)
+                {
+                    // Tampilkan context menu
+                    plusImageContextMenuStrip.Show(pictureBox, e.Location);
+                }
+            }
+        }
+
+        private void plusImageToolStripButton_Click(object sender, EventArgs e)
+        {
+            // Cek apakah ada gambar
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
+            }
+
+            currentMode = EditMode.PlusImage;
+            pictureBox.Cursor = Cursors.Default;
         }
     }
 }

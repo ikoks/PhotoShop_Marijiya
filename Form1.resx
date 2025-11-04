@@ -124,6 +124,15 @@
     <value>132, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="plusImageToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACqSURBVEhL7ZE7DoQwDERzkHxaSso9wt54yz3WluCsxlFk
+        E5xAk4InjYjHExuEexgipbSSNkuIF1q+oh5yJsQLLV/RHQScl0JbYwYE9dBaaGvMQIPue9Mu6Gb6Beb9
+        kQUhhC+OhUsLqH6R3ij/cK7lo9QcBaQXY/ywZ2UVMsB1lvf+R8/8NcVjH/GxBfJNz8T/g+t8PsQMGMyz
+        4K4wTkPNRYYvaMW4hx6c2wGyVsqkrBOYbQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="saveAsTxtToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -160,6 +169,14 @@
         MmuVee8LUwvQirMWQMLxsZREbWHabIsI7Cp1yBvTHFOHfJCUR/SYbqnhuqAlkS1XlscayWVAo08vWtu2
         L7AnvGhxrHjnMVB84RvFLP5UWIGmSSB+/sduIszE3y3gqVAxsj0wmRymQsWI68HTT//nUFUfbDH2dV1r
         lWIAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="citraBinerToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB4SURBVEhL7ZMxCsBACAT9iW3K+//nEk9EDAk3TRJSOGDj
+        3G4hnDT/R1WHzR4zYp2QR0rYJ9YJeYQKyCMW2krB3YmW/sJ8tAqQR0rYJ9YJeYQKyCMWevbmxCxZFZJH
+        Stgn1gl5hArIIxbqf3CGCsgjFvr2HzQvI3IAMQiT4bLDHD4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="pictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -1534,6 +1551,9 @@
         ALApIwAAAAAAALApIwAAAAAAALApIwAAAAAAALDo549fAcBUe4kARrsAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="plusImageContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>237, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>58</value>
   </metadata>
