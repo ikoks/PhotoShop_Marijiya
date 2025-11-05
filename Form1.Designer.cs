@@ -118,7 +118,7 @@
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
             sliderBar = new TrackBar();
-            panelUtama = new Panel();
+            panelPictureBox = new Panel();
             pictureBox = new PictureBox();
             plusImageContextMenuStrip = new ContextMenuStrip(components);
             tambahToolStripMenuItem = new ToolStripMenuItem();
@@ -132,7 +132,7 @@
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
-            panelUtama.SuspendLayout();
+            panelPictureBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             plusImageContextMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -848,16 +848,19 @@
             sliderBar.Visible = false;
             sliderBar.Scroll += sliderBar_Scroll;
             // 
-            // panelUtama
+            // panelPictureBox
             // 
-            panelUtama.AutoScroll = true;
-            panelUtama.Controls.Add(pictureBox);
-            panelUtama.Dock = DockStyle.Fill;
-            panelUtama.Location = new Point(41, 34);
-            panelUtama.Name = "panelUtama";
-            panelUtama.Size = new Size(879, 411);
-            panelUtama.TabIndex = 4;
-            panelUtama.MouseUp += plusImagePictureBox_MouseUp;
+            panelPictureBox.AllowDrop = true;
+            panelPictureBox.AutoScroll = true;
+            panelPictureBox.Controls.Add(pictureBox);
+            panelPictureBox.Dock = DockStyle.Fill;
+            panelPictureBox.Location = new Point(41, 34);
+            panelPictureBox.Name = "panelPictureBox";
+            panelPictureBox.Size = new Size(879, 411);
+            panelPictureBox.TabIndex = 4;
+            panelPictureBox.DragDrop += panelPictureBox_DragDrop;
+            panelPictureBox.DragEnter += panelPictureBox_DragEnter;
+            panelPictureBox.MouseUp += plusImagePictureBox_MouseUp;
             // 
             // pictureBox
             // 
@@ -868,6 +871,8 @@
             pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
+            pictureBox.DragDrop += pictureBox_DragDrop;
+            pictureBox.DragEnter += pictureBox_DragEnter;
             pictureBox.MouseUp += plusImagePictureBox_MouseUp;
             // 
             // plusImageContextMenuStrip
@@ -895,6 +900,7 @@
             // 
             // kaliToolStripMenuItem
             // 
+            kaliToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             kaliToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { imageToolStripMenuItem1, angkaToolStripMenuItem });
             kaliToolStripMenuItem.Name = "kaliToolStripMenuItem";
             kaliToolStripMenuItem.Size = new Size(112, 22);
@@ -914,6 +920,7 @@
             // 
             // bagiToolStripMenuItem
             // 
+            bagiToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             bagiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { imageToolStripMenuItem2, angkaToolStripMenuItem1 });
             bagiToolStripMenuItem.Name = "bagiToolStripMenuItem";
             bagiToolStripMenuItem.Size = new Size(112, 22);
@@ -938,7 +945,7 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(920, 445);
             Controls.Add(sliderBar);
-            Controls.Add(panelUtama);
+            Controls.Add(panelPictureBox);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -953,8 +960,8 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).EndInit();
-            panelUtama.ResumeLayout(false);
-            panelUtama.PerformLayout();
+            panelPictureBox.ResumeLayout(false);
+            panelPictureBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             plusImageContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
@@ -1045,7 +1052,7 @@
         private ToolStripMenuItem negativeToolStripMenuItem;
         private ToolStripButton detectionColorToolStripButton;
         private ToolStripButton brightnestoolStripButton;
-        private Panel panelUtama;
+        private Panel panelPictureBox;
         private PictureBox pictureBox;
         private ToolStripButton plusImageToolStripButton;
         private ContextMenuStrip contextMenuStrip1;

@@ -168,7 +168,7 @@ namespace PhotoShop_Marijiya
         }
 
 
-
+        // Fungsi Mendeteksi Warna Tertentu dalam Gambar
         public static Bitmap ApplyColorDetection(byte[,,] pixelData, Color targetColor)
         {
             int height = pixelData.GetLength(0);
