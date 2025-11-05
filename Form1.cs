@@ -471,6 +471,7 @@ namespace PhotoShop_Marijiya
                 if (e.Button == MouseButtons.Right)
                 {
                     // Tampilkan context menu
+                    plusImageContextMenuStrip.Show(panelUtama, e.Location);
                     plusImageContextMenuStrip.Show(pictureBox, e.Location);
                 }
             }
@@ -482,10 +483,113 @@ namespace PhotoShop_Marijiya
             if (pixelData == null)
             {
                 MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
-            }
+            } else
+            {
+                // Membuat sebuah instance dari OpenFileDialog
+                OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            currentMode = EditMode.PlusImage;
-            pictureBox.Cursor = Cursors.Default;
+                // Mengatur filter untuk tipe file gambar yang didukung
+                openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.jpeg;*.png;*.gif;*.tif;*.tiff|All Files (*.*)|*.*";
+                openFileDialog.Title = "Select an Image File";
+
+                // Menampilkan dialog dan memeriksa apakah pengguna menekan OK
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // dapatkan salinan gambar lama
+                        Bitmap oldImage = new Bitmap(pictureBox.Image);
+
+                        // Memuat gambar yang dipilih ke dalam PictureBox
+                        string selectedImage = openFileDialog.FileName;
+                        Bitmap newImage = new Bitmap(selectedImage);
+
+                        // Gabungkan gambar lama dan baru
+                        int combinedWidth = Math.Max(oldImage.Width, newImage.Width);
+                        int combinedHeight = Math.Max(oldImage.Height, newImage.Height);
+
+                        // Membuat bitmap baru untuk menampung gabungan
+                        Bitmap combinedImage = new Bitmap(combinedWidth, combinedHeight);
+
+                        using (Graphics g = Graphics.FromImage(combinedImage))
+                        {
+                            // Menggambar gambar lama di posisi (0,0)
+                            g.DrawImage(oldImage, 0, 0, oldImage.Width, oldImage.Height);
+                            // Menggambar gambar baru di posisi (0,0)
+                            g.DrawImage(newImage, 0, 0, newImage.Width, newImage.Height);
+                        }
+
+                        // Bersihkan gambar lama dan baru dari memory
+                        oldImage.Dispose();
+                        newImage.Dispose();
+
+                        pictureBox.Image = combinedImage;
+
+                        if (pictureBox.Image != null)
+                        {
+                            //Memasukan width dan height pada variabel
+                            int imgHeight = pictureBox.Image.Height;
+                            int imgWidth = pictureBox.Image.Width;
+
+                            // --- TAMBAHAN DIMULAI ---
+                            // 1. Inisialisasi array 3D sesuai ukuran gambar
+                            pixelData = new byte[imgHeight, imgWidth, 3];
+
+                            // 2. Konversi gambar ke Bitmap agar bisa dibaca pixelnya
+                            Bitmap bmp = new Bitmap(pictureBox.Image);
+
+                            // 3. Looping untuk mengisi array pixelData
+                            for (int y = 0; y < imgHeight; y++)
+                            {
+                                for (int x = 0; x < imgWidth; x++)
+                                {
+                                    Color pixelColor = bmp.GetPixel(x, y);
+                                    pixelData[y, x, 0] = pixelColor.R; // Simpan nilai Red
+                                    pixelData[y, x, 1] = pixelColor.G; // Simpan nilai Green
+                                    pixelData[y, x, 2] = pixelColor.B; // Simpan nilai Blue
+                                }
+                            }
+
+                            // Bersihkan bitmap sementara
+                            bmp.Dispose();
+
+                            // Tampilkan pesan sukses
+                            string message = $"Gambar baru berhasil ditambahkan!\n\n" +
+                                             $"File: {System.IO.Path.GetFileName(selectedImage)}\n" +
+                                             $"Ukuran: {imgWidth} x {imgHeight} pixels";
+                            MessageBox.Show(message);
+                        }
+                        else
+                        {
+                            // Jika gagal menggabungkan, tampilkan pesan error
+                            MessageBox.Show("gagal menggabungkan objek");
+                        }
+
+                        // Perbarui Text form dengan nama file yang dimuat
+                        this.Text = "PhotoShop Mariji - " + Path.GetFileName(openFileDialog.FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Menampilkan pesan error jika ada masalah saat memuat gambar
+                        MessageBox.Show("Error loading image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                // Cek apakah sudah dalam mode PlusImage
+                if (currentMode == EditMode.PlusImage)
+                {
+                    // Jika sudah dalam mode PlusImage, matikan mode
+                    currentMode = EditMode.None;
+                    pictureBox.Cursor = Cursors.Default;
+
+                    return;
+                }
+
+                // Aktifkan mode PlusImage
+                currentMode = EditMode.PlusImage;
+            }
+            
+            
         }
     }
 }

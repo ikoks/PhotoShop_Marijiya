@@ -106,6 +106,10 @@
             brightnestoolStripButton = new ToolStripButton();
             detectionColorToolStripButton = new ToolStripButton();
             citraBinerToolStripButton = new ToolStripSplitButton();
+            aNDToolStripMenuItem = new ToolStripMenuItem();
+            oRToolStripMenuItem = new ToolStripMenuItem();
+            nOTToolStripMenuItem = new ToolStripMenuItem();
+            xORToolStripMenuItem = new ToolStripMenuItem();
             zoomInToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSplitButton1 = new ToolStripSplitButton();
             BottomToolStripPanel = new ToolStripPanel();
@@ -114,7 +118,7 @@
             LeftToolStripPanel = new ToolStripPanel();
             ContentPanel = new ToolStripContentPanel();
             sliderBar = new TrackBar();
-            panel = new Panel();
+            panelUtama = new Panel();
             pictureBox = new PictureBox();
             plusImageContextMenuStrip = new ContextMenuStrip(components);
             tambahToolStripMenuItem = new ToolStripMenuItem();
@@ -125,14 +129,10 @@
             bagiToolStripMenuItem = new ToolStripMenuItem();
             imageToolStripMenuItem2 = new ToolStripMenuItem();
             angkaToolStripMenuItem1 = new ToolStripMenuItem();
-            aNDToolStripMenuItem = new ToolStripMenuItem();
-            oRToolStripMenuItem = new ToolStripMenuItem();
-            nOTToolStripMenuItem = new ToolStripMenuItem();
-            xORToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
-            panel.SuspendLayout();
+            panelUtama.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).BeginInit();
             plusImageContextMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -755,6 +755,30 @@
             citraBinerToolStripButton.Size = new Size(38, 28);
             citraBinerToolStripButton.Text = "Citra Biner";
             // 
+            // aNDToolStripMenuItem
+            // 
+            aNDToolStripMenuItem.Name = "aNDToolStripMenuItem";
+            aNDToolStripMenuItem.Size = new Size(101, 22);
+            aNDToolStripMenuItem.Text = "AND";
+            // 
+            // oRToolStripMenuItem
+            // 
+            oRToolStripMenuItem.Name = "oRToolStripMenuItem";
+            oRToolStripMenuItem.Size = new Size(101, 22);
+            oRToolStripMenuItem.Text = "OR";
+            // 
+            // nOTToolStripMenuItem
+            // 
+            nOTToolStripMenuItem.Name = "nOTToolStripMenuItem";
+            nOTToolStripMenuItem.Size = new Size(101, 22);
+            nOTToolStripMenuItem.Text = "NOT";
+            // 
+            // xORToolStripMenuItem
+            // 
+            xORToolStripMenuItem.Name = "xORToolStripMenuItem";
+            xORToolStripMenuItem.Size = new Size(101, 22);
+            xORToolStripMenuItem.Text = "XOR";
+            // 
             // zoomInToolStripMenuItem1
             // 
             zoomInToolStripMenuItem1.BackColor = SystemColors.ControlLightLight;
@@ -824,15 +848,16 @@
             sliderBar.Visible = false;
             sliderBar.Scroll += sliderBar_Scroll;
             // 
-            // panel
+            // panelUtama
             // 
-            panel.AutoScroll = true;
-            panel.Controls.Add(pictureBox);
-            panel.Dock = DockStyle.Fill;
-            panel.Location = new Point(41, 34);
-            panel.Name = "panel";
-            panel.Size = new Size(879, 411);
-            panel.TabIndex = 4;
+            panelUtama.AutoScroll = true;
+            panelUtama.Controls.Add(pictureBox);
+            panelUtama.Dock = DockStyle.Fill;
+            panelUtama.Location = new Point(41, 34);
+            panelUtama.Name = "panelUtama";
+            panelUtama.Size = new Size(879, 411);
+            panelUtama.TabIndex = 4;
+            panelUtama.MouseUp += plusImagePictureBox_MouseUp;
             // 
             // pictureBox
             // 
@@ -906,30 +931,6 @@
             angkaToolStripMenuItem1.Size = new Size(105, 22);
             angkaToolStripMenuItem1.Text = "Angka";
             // 
-            // aNDToolStripMenuItem
-            // 
-            aNDToolStripMenuItem.Name = "aNDToolStripMenuItem";
-            aNDToolStripMenuItem.Size = new Size(180, 22);
-            aNDToolStripMenuItem.Text = "AND";
-            // 
-            // oRToolStripMenuItem
-            // 
-            oRToolStripMenuItem.Name = "oRToolStripMenuItem";
-            oRToolStripMenuItem.Size = new Size(180, 22);
-            oRToolStripMenuItem.Text = "OR";
-            // 
-            // nOTToolStripMenuItem
-            // 
-            nOTToolStripMenuItem.Name = "nOTToolStripMenuItem";
-            nOTToolStripMenuItem.Size = new Size(180, 22);
-            nOTToolStripMenuItem.Text = "NOT";
-            // 
-            // xORToolStripMenuItem
-            // 
-            xORToolStripMenuItem.Name = "xORToolStripMenuItem";
-            xORToolStripMenuItem.Size = new Size(180, 22);
-            xORToolStripMenuItem.Text = "XOR";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -937,7 +938,7 @@
             BackColor = SystemColors.Control;
             ClientSize = new Size(920, 445);
             Controls.Add(sliderBar);
-            Controls.Add(panel);
+            Controls.Add(panelUtama);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
             Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -952,8 +953,8 @@
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).EndInit();
-            panel.ResumeLayout(false);
-            panel.PerformLayout();
+            panelUtama.ResumeLayout(false);
+            panelUtama.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox).EndInit();
             plusImageContextMenuStrip.ResumeLayout(false);
             ResumeLayout(false);
@@ -1044,7 +1045,7 @@
         private ToolStripMenuItem negativeToolStripMenuItem;
         private ToolStripButton detectionColorToolStripButton;
         private ToolStripButton brightnestoolStripButton;
-        private Panel panel;
+        private Panel panelUtama;
         private PictureBox pictureBox;
         private ToolStripButton plusImageToolStripButton;
         private ContextMenuStrip contextMenuStrip1;
