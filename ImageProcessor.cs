@@ -248,35 +248,35 @@ namespace PhotoShop_Marijiya
             int height2 = pixelData2.GetLength(0);
             int width2 = pixelData2.GetLength(1);
 
-            // Tentukan dimensi maksimum untuk bitmap hasil
-            int height = Math.Min(height1, height2);
-            int width = Math.Min(width1, width2);
+            // 1. Tentukan dimensi MAKSIMUM (Perbaikan #1)
+            int height = Math.Max(height1, height2);
+            int width = Math.Max(width1, width2);
 
             // Buat bitmap baru dengan dimensi maksimum
             Bitmap bmp = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-            // Iterasi melalui setiap piksel
+            // 2. Iterasi melalui setiap piksel di kanvas terbesar
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
                     // Ambil nilai piksel dari kedua array
                     // Jika di luar batas, anggap nilainya 0
-                    int R1 = pixelData1[y, x, 0];
-                    int G1 = pixelData1[y, x, 1];
-                    int B1 = pixelData1[y, x, 2];
+                    int R1 = (x < width1 && y < height1) ? pixelData1[y, x, 0] : 0;
+                    int G1 = (x < width1 && y < height1) ? pixelData1[y, x, 1] : 0;
+                    int B1 = (x < width1 && y < height1) ? pixelData1[y, x, 2] : 0;
 
-                    int R2 = pixelData2[y, x, 0];
-                    int G2 = pixelData2[y, x, 1];
-                    int B2 = pixelData2[y, x, 2];
+                    int R2 = (x < width2 && y < height2) ? pixelData2[y, x, 0] : 0;
+                    int G2 = (x < width2 && y < height2) ? pixelData2[y, x, 1] : 0;
+                    int B2 = (x < width2 && y < height2) ? pixelData2[y, x, 2] : 0;
 
-                    // Tambahkan nilai piksel dan lakukan clamping ke 0-255
-                    byte newR = (byte)Math.Max(0, R1 - R2);
-                    byte newG = (byte)Math.Max(0, G1 - G2);
-                    byte newB = (byte)Math.Max(0, B1 - B2);
+                    // 3. Gunakan LOGIKA DIFFERENCE (Absolut) (Perbaikan #2)
+                    byte newR = (byte)Math.Abs(R1 - R2);
+                    byte newG = (byte)Math.Abs(G1 - G2);
+                    byte newB = (byte)Math.Abs(B1 - B2);
 
                     // Set piksel di bitmap baru
-                    bmp.SetPixel(x, y, Color.FromArgb((byte)newR, (byte)newG, (byte)newB));
+                    bmp.SetPixel(x, y, Color.FromArgb(newR, newG, newB));
                 }
             }
             return bmp;
