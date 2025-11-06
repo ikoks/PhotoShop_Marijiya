@@ -670,5 +670,129 @@ namespace PhotoShop_Marijiya
                 MessageBox.Show("Input tidak valid. Harap masukkan angka.");
             }
         }
+
+        private void imageToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (originalImage == null)
+            {
+                MessageBox.Show("Anda memerlukan gambar dasar terlebih dahulu.", "Error");
+                return;
+            }
+
+            byte[,,] pixelData1;
+            byte[,,]? pixelData2 = null;
+            Bitmap? tempBitmap2 = null;
+
+            try
+            {
+                pixelData1 = this.ConvertBitmapToPixelData(this.originalImage);
+
+                if (secondLayerImage != null)
+                {
+                    pixelData2 = ConvertBitmapToPixelData(secondLayerImage);
+                    secondLayerImage.Dispose();
+                    secondLayerImage = null;
+                }
+                else
+                {
+                    // --- UBAH PESAN ---
+                    MessageBox.Show("Pilih gambar KEDUA (Gambar B) untuk dikalikan.");
+                    string imagePath2 = SelectFileImage();
+                    if (imagePath2 == null) return;
+
+                    tempBitmap2 = new Bitmap(imagePath2);
+                    pixelData2 = ConvertBitmapToPixelData(tempBitmap2);
+                }
+
+                if (pixelData2 == null)
+                {
+                    throw new Exception("Gagal mengonversi gambar kedua.");
+                }
+
+                // --- UBAH FUNGSI YANG DIPANGGIL ---
+                Bitmap bmp = ImageProcessor.ApplyMultiplyImage(pixelData1, pixelData2);
+
+                pictureBox.Image = bmp;
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+
+                // --- UBAH PESAN ---
+                MessageBox.Show("Gambar berhasil dikalikan!");
+            }
+            catch (Exception ex)
+            {
+                // --- UBAH PESAN ---
+                MessageBox.Show("Error saat mengalikan gambar: " + ex.Message, "Error");
+            }
+            finally
+            {
+                if (tempBitmap2 != null)
+                {
+                    tempBitmap2.Dispose();
+                }
+            }
+        }
+
+        private void imageToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (originalImage == null)
+            {
+                MessageBox.Show("Anda memerlukan gambar dasar terlebih dahulu.", "Error");
+                return;
+            }
+
+            byte[,,] pixelData1;
+            byte[,,]? pixelData2 = null;
+            Bitmap? tempBitmap2 = null;
+
+            try
+            {
+                pixelData1 = this.ConvertBitmapToPixelData(this.originalImage);
+
+                if (secondLayerImage != null)
+                {
+                    pixelData2 = ConvertBitmapToPixelData(secondLayerImage);
+                    secondLayerImage.Dispose();
+                    secondLayerImage = null;
+                }
+                else
+                {
+                    // --- UBAH PESAN ---
+                    MessageBox.Show("Pilih gambar KEDUA (Gambar B) untuk pembagian.");
+                    string imagePath2 = SelectFileImage();
+                    if (imagePath2 == null) return;
+
+                    tempBitmap2 = new Bitmap(imagePath2);
+                    pixelData2 = ConvertBitmapToPixelData(tempBitmap2);
+                }
+
+                if (pixelData2 == null)
+                {
+                    throw new Exception("Gagal mengonversi gambar kedua.");
+                }
+
+                // --- UBAH FUNGSI YANG DIPANGGIL ---
+                Bitmap bmp = ImageProcessor.ApplyDivideImage(pixelData1, pixelData2);
+
+                pictureBox.Image = bmp;
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+
+                // --- UBAH PESAN ---
+                MessageBox.Show("Gambar berhasil dibagi!");
+            }
+            catch (Exception ex)
+            {
+                // --- UBAH PESAN ---
+                MessageBox.Show("Error saat membagi gambar: " + ex.Message, "Error");
+            }
+            finally
+            {
+                if (tempBitmap2 != null)
+                {
+                    tempBitmap2.Dispose();
+                }
+            }
+        }
     }
 }
