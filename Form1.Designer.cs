@@ -880,30 +880,32 @@
             plusImageContextMenuStrip.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             plusImageContextMenuStrip.Items.AddRange(new ToolStripItem[] { tambahToolStripMenuItem, kurangToolStripMenuItem, kaliToolStripMenuItem, bagiToolStripMenuItem });
             plusImageContextMenuStrip.Name = "contextMenuStrip1";
-            plusImageContextMenuStrip.Size = new Size(113, 92);
+            plusImageContextMenuStrip.Size = new Size(181, 114);
             // 
             // tambahToolStripMenuItem
             // 
             tambahToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             tambahToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             tambahToolStripMenuItem.Name = "tambahToolStripMenuItem";
-            tambahToolStripMenuItem.Size = new Size(112, 22);
+            tambahToolStripMenuItem.Size = new Size(180, 22);
             tambahToolStripMenuItem.Text = "Tambah";
+            tambahToolStripMenuItem.Click += tambahToolStripMenuItem_Click;
             // 
             // kurangToolStripMenuItem
             // 
             kurangToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             kurangToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
             kurangToolStripMenuItem.Name = "kurangToolStripMenuItem";
-            kurangToolStripMenuItem.Size = new Size(112, 22);
+            kurangToolStripMenuItem.Size = new Size(180, 22);
             kurangToolStripMenuItem.Text = "Kurang";
+            kurangToolStripMenuItem.Click += kurangToolStripMenuItem_Click;
             // 
             // kaliToolStripMenuItem
             // 
             kaliToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             kaliToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { imageToolStripMenuItem1, angkaToolStripMenuItem });
             kaliToolStripMenuItem.Name = "kaliToolStripMenuItem";
-            kaliToolStripMenuItem.Size = new Size(112, 22);
+            kaliToolStripMenuItem.Size = new Size(180, 22);
             kaliToolStripMenuItem.Text = "Kali";
             // 
             // imageToolStripMenuItem1
@@ -923,7 +925,7 @@
             bagiToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
             bagiToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { imageToolStripMenuItem2, angkaToolStripMenuItem1 });
             bagiToolStripMenuItem.Name = "bagiToolStripMenuItem";
-            bagiToolStripMenuItem.Size = new Size(112, 22);
+            bagiToolStripMenuItem.Size = new Size(180, 22);
             bagiToolStripMenuItem.Text = "Bagi";
             // 
             // imageToolStripMenuItem2
