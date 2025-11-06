@@ -127,10 +127,10 @@
   <data name="plusImageToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACrSURBVEhL7ZExDsMgDEU5AhcA1owZe4TeuGOP1TEx1TdC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACrSURBVEhL7ZExDsMgDEW5AScA1owZe4TeuGOP1TEx1TdC
         doghWRjypK/g74+dKO5hiJTSStosIV5o+Yp6yJkQL7R8RXcQcF4KbY0ZENRDa6GtMQMNuu9Nu6Cb6ReY
         90cWhBC+OBYuLaD6RXqj/MO5lo9ScxSQXozxw56VVcgA11ne+x8989cUj33ExxbINz0T/w+u8/kQM2Aw
-        z4K7wjgNNRcZvqAV4x56cG4Hy+/KXNG6GYkAAAAASUVORK5CYII=
+        z4K7wjgNNRcZvqAV4x56cG4HuL3KVj28OO0AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="saveAsTxtToolStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

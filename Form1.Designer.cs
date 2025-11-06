@@ -129,6 +129,8 @@
             bagiToolStripMenuItem = new ToolStripMenuItem();
             imageToolStripMenuItem2 = new ToolStripMenuItem();
             angkaToolStripMenuItem1 = new ToolStripMenuItem();
+            deleteImageToolStripMenuItem = new ToolStripMenuItem();
+            deleteImageToolStripMenuItem1 = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
@@ -435,7 +437,7 @@
             // imageToolStripMenuItem
             // 
             imageToolStripMenuItem.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            imageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { autoToneToolStripMenuItem, autoContrastToolStripMenuItem, autoColorToolStripMenuItem, toolStripSeparator8, imageSizeToolStripMenuItem, canvasSizeToolStripMenuItem, imageRotationToolStripMenuItem, imageColorToolStripMenuItem });
+            imageToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { autoToneToolStripMenuItem, autoContrastToolStripMenuItem, autoColorToolStripMenuItem, toolStripSeparator8, imageSizeToolStripMenuItem, canvasSizeToolStripMenuItem, imageRotationToolStripMenuItem, imageColorToolStripMenuItem, deleteImageToolStripMenuItem });
             imageToolStripMenuItem.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             imageToolStripMenuItem.Size = new Size(47, 28);
@@ -878,9 +880,9 @@
             // plusImageContextMenuStrip
             // 
             plusImageContextMenuStrip.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            plusImageContextMenuStrip.Items.AddRange(new ToolStripItem[] { tambahToolStripMenuItem, kurangToolStripMenuItem, kaliToolStripMenuItem, bagiToolStripMenuItem });
+            plusImageContextMenuStrip.Items.AddRange(new ToolStripItem[] { tambahToolStripMenuItem, kurangToolStripMenuItem, kaliToolStripMenuItem, bagiToolStripMenuItem, deleteImageToolStripMenuItem1 });
             plusImageContextMenuStrip.Name = "contextMenuStrip1";
-            plusImageContextMenuStrip.Size = new Size(181, 114);
+            plusImageContextMenuStrip.Size = new Size(181, 136);
             // 
             // tambahToolStripMenuItem
             // 
@@ -939,6 +941,18 @@
             angkaToolStripMenuItem1.Name = "angkaToolStripMenuItem1";
             angkaToolStripMenuItem1.Size = new Size(105, 22);
             angkaToolStripMenuItem1.Text = "Angka";
+            // 
+            // deleteImageToolStripMenuItem
+            // 
+            deleteImageToolStripMenuItem.Name = "deleteImageToolStripMenuItem";
+            deleteImageToolStripMenuItem.Size = new Size(237, 22);
+            deleteImageToolStripMenuItem.Text = "Delete Image";
+            // 
+            // deleteImageToolStripMenuItem1
+            // 
+            deleteImageToolStripMenuItem1.Name = "deleteImageToolStripMenuItem1";
+            deleteImageToolStripMenuItem1.Size = new Size(180, 22);
+            deleteImageToolStripMenuItem1.Text = "Delete Image";
             // 
             // Form1
             // 
@@ -1072,5 +1086,7 @@
         private ToolStripMenuItem oRToolStripMenuItem;
         private ToolStripMenuItem nOTToolStripMenuItem;
         private ToolStripMenuItem xORToolStripMenuItem;
+        private ToolStripMenuItem deleteImageToolStripMenuItem;
+        private ToolStripMenuItem deleteImageToolStripMenuItem1;
     }
 }
