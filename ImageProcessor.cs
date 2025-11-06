@@ -281,5 +281,74 @@ namespace PhotoShop_Marijiya
             }
             return bmp;
         }
+
+        public static Bitmap ApplyMultiply(byte[,,] pixelData, double value)
+        {
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // Ambil nilai piksel lama
+                    double R = pixelData[y, x, 0];
+                    double G = pixelData[y, x, 1];
+                    double B = pixelData[y, x, 2];
+
+                    // Terapkan perkalian
+                    double newR = R * value;
+                    double newG = G * value;
+                    double newB = B * value;
+
+                    // "Jepit" (Clamp) hasilnya agar tetap di antara 0 dan 255
+                    byte finalR = (byte)Math.Min(255, Math.Max(0, newR));
+                    byte finalG = (byte)Math.Min(255, Math.Max(0, newG));
+                    byte finalB = (byte)Math.Min(255, Math.Max(0, newB));
+
+                    bmp.SetPixel(x, y, Color.FromArgb(finalR, finalG, finalB));
+                }
+            }
+            return bmp;
+        }
+
+        public static Bitmap ApplyDivide(byte[,,] pixelData, double value)
+        {
+            // PENTING: Mencegah error pembagian dengan nol
+            if (value == 0)
+            {
+                // Kembalikan gambar asli jika pembagi 0
+                return ApplyMultiply(pixelData, 1.0); // Trik: 1.0x = salinan
+            }
+
+            int height = pixelData.GetLength(0);
+            int width = pixelData.GetLength(1);
+            Bitmap bmp = new Bitmap(width, height);
+
+            for (int y = 0; y < height; y++)
+            {
+                for (int x = 0; x < width; x++)
+                {
+                    // Ambil nilai piksel lama
+                    double R = pixelData[y, x, 0];
+                    double G = pixelData[y, x, 1];
+                    double B = pixelData[y, x, 2];
+
+                    // Terapkan pembagian
+                    double newR = R / value;
+                    double newG = G / value;
+                    double newB = B / value;
+
+                    // "Jepit" (Clamp) hasilnya (meskipun pembagian jarang > 255)
+                    byte finalR = (byte)Math.Min(255, Math.Max(0, newR));
+                    byte finalG = (byte)Math.Min(255, Math.Max(0, newG));
+                    byte finalB = (byte)Math.Min(255, Math.Max(0, newB));
+
+                    bmp.SetPixel(x, y, Color.FromArgb(finalR, finalG, finalB));
+                }
+            }
+            return bmp;
+        }
     }
 }

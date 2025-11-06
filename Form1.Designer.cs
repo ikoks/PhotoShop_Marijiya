@@ -921,14 +921,15 @@
             // imageToolStripMenuItem1
             // 
             imageToolStripMenuItem1.Name = "imageToolStripMenuItem1";
-            imageToolStripMenuItem1.Size = new Size(154, 34);
+            imageToolStripMenuItem1.Size = new Size(270, 34);
             imageToolStripMenuItem1.Text = "Image";
             // 
             // angkaToolStripMenuItem
             // 
             angkaToolStripMenuItem.Name = "angkaToolStripMenuItem";
-            angkaToolStripMenuItem.Size = new Size(154, 34);
+            angkaToolStripMenuItem.Size = new Size(270, 34);
             angkaToolStripMenuItem.Text = "Angka";
+            angkaToolStripMenuItem.Click += angkaToolStripMenuItem_Click;
             // 
             // bagiToolStripMenuItem
             // 
@@ -941,14 +942,15 @@
             // imageToolStripMenuItem2
             // 
             imageToolStripMenuItem2.Name = "imageToolStripMenuItem2";
-            imageToolStripMenuItem2.Size = new Size(154, 34);
+            imageToolStripMenuItem2.Size = new Size(270, 34);
             imageToolStripMenuItem2.Text = "Image";
             // 
             // angkaToolStripMenuItem1
             // 
             angkaToolStripMenuItem1.Name = "angkaToolStripMenuItem1";
-            angkaToolStripMenuItem1.Size = new Size(154, 34);
+            angkaToolStripMenuItem1.Size = new Size(270, 34);
             angkaToolStripMenuItem1.Text = "Angka";
+            angkaToolStripMenuItem1.Click += angkaToolStripMenuItem1_Click;
             // 
             // deleteImageToolStripMenuItem1
             // 

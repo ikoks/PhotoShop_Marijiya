@@ -1,5 +1,6 @@
 namespace PhotoShop_Marijiya
 {
+    using Microsoft.VisualBasic;
     using System;
     using System.Diagnostics.Metrics;
     using System.Windows.Forms;
@@ -216,7 +217,7 @@ namespace PhotoShop_Marijiya
             pictureBox.Cursor = Cursors.Default;
             detectionColorToolStripButton.Checked = false;
         }
-        
+
 
         // Method untuk menerapkan efek negatif
         private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -595,6 +596,79 @@ namespace PhotoShop_Marijiya
 
 
             MessageBox.Show("Kanvas telah dibersihkan.");
+        }
+
+        private void angkaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // 1. Minta input untuk "KALI"
+            string input = Interaction.InputBox(
+                "Masukkan angka PENGALI (misal: 2 atau 1.5):", // Prompt
+                "Multiply", // Judul
+                "2.0" // Nilai default
+            );
+
+            if (string.IsNullOrEmpty(input)) return; // Pengguna membatalkan
+
+            double value;
+            if (double.TryParse(input, out value))
+            {
+                // 2. Panggil fungsi 'ApplyMultiply'
+                pictureBox.Image = ImageProcessor.ApplyMultiply(pixelData, value);
+
+                // 3. Update state
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid. Harap masukkan angka.");
+            }
+        }
+
+        private void angkaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // 1. Minta input untuk "BAGI"
+            string input = Interaction.InputBox(
+                "Masukkan angka PEMBAGI (misal: 2 atau 1.5):", // Prompt
+                "Divide", // Judul
+                "2.0" // Nilai default
+            );
+
+            if (string.IsNullOrEmpty(input)) return; // Pengguna membatalkan
+
+            double value;
+            if (double.TryParse(input, out value))
+            {
+                // 2. Cek Pembagian dengan Nol
+                if (value == 0)
+                {
+                    MessageBox.Show("Tidak bisa membagi dengan nol.", "Error");
+                    return;
+                }
+
+                // 3. Panggil fungsi 'ApplyDivide'
+                pictureBox.Image = ImageProcessor.ApplyDivide(pixelData, value);
+
+                // 4. Update state
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid. Harap masukkan angka.");
+            }
         }
     }
 }
