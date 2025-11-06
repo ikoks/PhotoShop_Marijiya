@@ -777,7 +777,7 @@
             pictureBox.Location = new Point(32, 34);
             pictureBox.Name = "pictureBox";
             pictureBox.Size = new Size(1800, 1200);
-            pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox.TabIndex = 2;
             pictureBox.TabStop = false;
             pictureBox.MouseClick += pictureBox_MouseClick;
