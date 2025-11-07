@@ -8,10 +8,6 @@ namespace PhotoShop_Marijiya
     public partial class Form1 : Form
     {
 
-        // Format: [tinggi, lebar, 3]
-        // [y, x, 0] = Red
-        // [y, x, 1] = Green
-        // [y, x, 2] = Blue
         private byte[,,] pixelData;
         private Bitmap originalImage;
         private Bitmap? secondLayerImage = null;
