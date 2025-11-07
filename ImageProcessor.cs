@@ -198,6 +198,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        //Fungsi tambah image vs image
         public static Bitmap PlusArraysImage(byte[ , , ] pixelData1, byte[,,] pixelData2)
         {
             // Dapatkan dimensi dari kedua array
@@ -240,6 +241,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        // Fungsi kurang image vs image
         public static Bitmap MinArraysImage(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             // Dapatkan dimensi dari kedua array
@@ -282,6 +284,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        // Fungsi perkalian angka
         public static Bitmap ApplyMultiply(byte[,,] pixelData, double value)
         {
             int height = pixelData.GetLength(0);
@@ -313,6 +316,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        // Fungsi pembagian angka
         public static Bitmap ApplyDivide(byte[,,] pixelData, double value)
         {
             // PENTING: Mencegah error pembagian dengan nol
@@ -351,6 +355,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        // Fungsi perkalian image vs image
         public static Bitmap ApplyMultiplyImage(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             // Tentukan dimensi maksimum
@@ -398,6 +403,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
+        // Fungsi pembagian image vs image
         public static Bitmap ApplyDivideImage(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             // Tentukan dimensi maksimum
@@ -449,9 +455,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
-        /// <summary>
-        /// Menerapkan operasi Bitwise AND (R1 & R2) pada dua gambar.
-        /// </summary>
+        // Fungsi Bitwise AND
         public static Bitmap ApplyBitwiseAND(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             int height1 = pixelData1.GetLength(0);
@@ -488,7 +492,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
-        /// Menerapkan operasi Bitwise OR (R1 | R2) pada dua gambar.
+        // Fungsi bitwise OR
         public static Bitmap ApplyBitwiseOR(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             int height1 = pixelData1.GetLength(0);
@@ -525,7 +529,7 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
-        /// Menerapkan operasi Bitwise XOR (R1 ^ R2) pada dua gambar.
+        // Fungsi bitwise XOR
         public static Bitmap ApplyBitwiseXOR(byte[,,] pixelData1, byte[,,] pixelData2)
         {
             int height1 = pixelData1.GetLength(0);

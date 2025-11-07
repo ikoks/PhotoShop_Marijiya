@@ -12,7 +12,7 @@ namespace PhotoShop_Marijiya
 {
     public static class HistogramManager
     {
-
+        // Fungsi membuat panel histogram
         public static Panel CreateHistogramPanel(Bitmap bmp)
         {
             int height = bmp.Height;
@@ -78,7 +78,7 @@ namespace PhotoShop_Marijiya
             return histogramPanel;
         }
 
-
+        // Fungsi membuat chart histogram
         private static Chart CreateHistogramChart(String title, int[] histogramData, Color color)
         {
             Chart chart = new Chart

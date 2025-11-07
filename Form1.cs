@@ -214,7 +214,6 @@ namespace PhotoShop_Marijiya
             detectionColorToolStripButton.Checked = false;
         }
 
-
         // Method untuk menerapkan efek negatif
         private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -389,7 +388,6 @@ namespace PhotoShop_Marijiya
         }
 
         // Method untuk menangani klik mouse pada PictureBox di mode PlusImage
-        /*fungsi yang belum tau*/
         private void plusImagePictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             // Hanya aktif jika mode PlusImage sedang berjalan
@@ -570,6 +568,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method delete image
         private void deleteImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox.Image = null;
@@ -594,6 +593,7 @@ namespace PhotoShop_Marijiya
             MessageBox.Show("Kanvas telah dibersihkan.");
         }
 
+        // method perkalian angka
         private void angkaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -627,6 +627,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method pembagian angka
         private void angkaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (pixelData == null)
@@ -667,6 +668,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method perkalian iamge vs image
         private void imageToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (originalImage == null)
@@ -729,6 +731,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method pembagian image vs image
         private void imageToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             if (originalImage == null)
@@ -791,6 +794,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method bitwise AND
         private void aNDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (originalImage == null)
@@ -848,6 +852,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        //method bitwise OR
         private void oRToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (originalImage == null)
@@ -906,6 +911,7 @@ namespace PhotoShop_Marijiya
 
         }
 
+        //method bitwise XOR
         private void xORToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (originalImage == null)

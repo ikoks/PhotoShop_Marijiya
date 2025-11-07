@@ -4,11 +4,8 @@ namespace PhotoShop_Marijiya
     // Gunakan kata kunci 'partial'
     public partial class Form1
     {
-        // ----------------------------------------
-        // ----- LOGIKA HISTOGRAM
-        // ----------------------------------------
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method menampilkan histogram
         private void ShowHistogramPanel()
         {
             if (pictureBox.Image == null) return;
@@ -21,7 +18,7 @@ namespace PhotoShop_Marijiya
             histogramPanel.BringToFront();
         }
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method refresh histogram
         private void RefreshHistogram()
         {
             if (histogramPanel != null && this.Controls.Contains(histogramPanel))
@@ -33,7 +30,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method button histogram
         private void histogramImageToolStripButton_Click(object sender, EventArgs e)
         {
             // Cek apakah ada gambar

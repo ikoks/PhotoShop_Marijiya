@@ -4,13 +4,13 @@ namespace PhotoShop_Marijiya
     // Gunakan kata kunci 'partial'
     public partial class Form1
     {
-        // Pindahkan variabel ini dari Form1.cs
+        // List format file support
         private readonly List<string> supportedImageFormats = new()
         {
             ".bmp", ".jpg", ".jpeg", ".png", ".gif", ".tif", ".tiff"
         };
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method panel drag mouse enter
         private void panelPictureBox_DragEnter(object sender, DragEventArgs e)
         {
             // Cek apakah data yang di-drag adalah file
@@ -24,7 +24,7 @@ namespace PhotoShop_Marijiya
             }
         }
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method mouse drop image
         private void panelPictureBox_DragDrop(object sender, DragEventArgs e)
         {
             // Ambil file yang di-drag
@@ -71,13 +71,13 @@ namespace PhotoShop_Marijiya
             }
         }
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method picturebox enter
         private void pictureBox_DragEnter(object sender, DragEventArgs e)
         {
             panelPictureBox_DragEnter(sender, e);
         }
 
-        // Pindahkan fungsi ini dari Form1.cs
+        // Method picturebox Drop
         private void pictureBox_DragDrop(object sender, DragEventArgs e)
         {
             panelPictureBox_DragDrop(sender, e);
