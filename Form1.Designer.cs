@@ -77,7 +77,7 @@
             derajatToolStripMenuItem1 = new ToolStripMenuItem();
             derajatToolStripMenuItem2 = new ToolStripMenuItem();
             derajatToolStripMenuItem3 = new ToolStripMenuItem();
-            arbitrayToolStripMenuItem = new ToolStripMenuItem();
+            derajatToolStripMenuItem4 = new ToolStripMenuItem();
             imageColorToolStripMenuItem = new ToolStripMenuItem();
             redColorToolStripMenuItem = new ToolStripMenuItem();
             greenColorToolStripMenuItem = new ToolStripMenuItem();
@@ -129,6 +129,7 @@
             imageToolStripMenuItem2 = new ToolStripMenuItem();
             angkaToolStripMenuItem1 = new ToolStripMenuItem();
             clearImageToolStripMenuItem1 = new ToolStripMenuItem();
+            freeDegreeToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
@@ -484,7 +485,7 @@
             // imageRotationToolStripMenuItem
             // 
             imageRotationToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
-            imageRotationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { derajatToolStripMenuItem1, derajatToolStripMenuItem2, derajatToolStripMenuItem3, arbitrayToolStripMenuItem });
+            imageRotationToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { derajatToolStripMenuItem1, derajatToolStripMenuItem2, derajatToolStripMenuItem3, derajatToolStripMenuItem4, freeDegreeToolStripMenuItem });
             imageRotationToolStripMenuItem.Name = "imageRotationToolStripMenuItem";
             imageRotationToolStripMenuItem.Size = new Size(237, 22);
             imageRotationToolStripMenuItem.Text = "Image Rotation";
@@ -493,29 +494,29 @@
             // 
             derajatToolStripMenuItem1.BackColor = SystemColors.ControlLightLight;
             derajatToolStripMenuItem1.Name = "derajatToolStripMenuItem1";
-            derajatToolStripMenuItem1.Size = new Size(186, 22);
-            derajatToolStripMenuItem1.Text = "180°";
+            derajatToolStripMenuItem1.Size = new Size(180, 22);
+            derajatToolStripMenuItem1.Text = "45°";
             // 
             // derajatToolStripMenuItem2
             // 
             derajatToolStripMenuItem2.BackColor = SystemColors.ControlLightLight;
             derajatToolStripMenuItem2.Name = "derajatToolStripMenuItem2";
-            derajatToolStripMenuItem2.Size = new Size(186, 22);
-            derajatToolStripMenuItem2.Text = "90° Clockwise";
+            derajatToolStripMenuItem2.Size = new Size(180, 22);
+            derajatToolStripMenuItem2.Text = "90°";
             // 
             // derajatToolStripMenuItem3
             // 
             derajatToolStripMenuItem3.BackColor = SystemColors.ControlLightLight;
             derajatToolStripMenuItem3.Name = "derajatToolStripMenuItem3";
-            derajatToolStripMenuItem3.Size = new Size(186, 22);
-            derajatToolStripMenuItem3.Text = "90° Counter Clockwise";
+            derajatToolStripMenuItem3.Size = new Size(180, 22);
+            derajatToolStripMenuItem3.Text = "180°";
             // 
-            // arbitrayToolStripMenuItem
+            // derajatToolStripMenuItem4
             // 
-            arbitrayToolStripMenuItem.BackColor = SystemColors.ControlLightLight;
-            arbitrayToolStripMenuItem.Name = "arbitrayToolStripMenuItem";
-            arbitrayToolStripMenuItem.Size = new Size(186, 22);
-            arbitrayToolStripMenuItem.Text = "Arbitray...";
+            derajatToolStripMenuItem4.BackColor = SystemColors.ControlLightLight;
+            derajatToolStripMenuItem4.Name = "derajatToolStripMenuItem4";
+            derajatToolStripMenuItem4.Size = new Size(180, 22);
+            derajatToolStripMenuItem4.Text = "270°";
             // 
             // imageColorToolStripMenuItem
             // 
@@ -962,6 +963,12 @@
             clearImageToolStripMenuItem1.Text = "Clear Image";
             clearImageToolStripMenuItem1.Click += deleteImageToolStripMenuItem_Click;
             // 
+            // freeDegreeToolStripMenuItem
+            // 
+            freeDegreeToolStripMenuItem.Name = "freeDegreeToolStripMenuItem";
+            freeDegreeToolStripMenuItem.Size = new Size(180, 22);
+            freeDegreeToolStripMenuItem.Text = "Free Degree";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -1043,7 +1050,7 @@
         private ToolStripMenuItem derajatToolStripMenuItem1;
         private ToolStripMenuItem derajatToolStripMenuItem2;
         private ToolStripMenuItem derajatToolStripMenuItem3;
-        private ToolStripMenuItem arbitrayToolStripMenuItem;
+        private ToolStripMenuItem derajatToolStripMenuItem4;
         private ToolStripMenuItem selectToolStripMenuItem;
         private ToolStripMenuItem allToolStripMenuItem;
         private ToolStripMenuItem deselectToolStripMenuItem;
@@ -1094,5 +1101,6 @@
         private ToolStripMenuItem xORToolStripMenuItem;
         private ToolStripMenuItem clearImageToolStripMenuItem;
         private ToolStripMenuItem clearImageToolStripMenuItem1;
+        private ToolStripMenuItem freeDegreeToolStripMenuItem;
     }
 }
