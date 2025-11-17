@@ -382,11 +382,11 @@ namespace PhotoShop_Marijiya
             {
                 MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
             }
-
+            MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
             currentMode = EditMode.ColorDetection;
             pictureBox.Cursor = Cursors.Cross;
         }
-
+        
         // Method untuk menangani klik mouse pada PictureBox di mode PlusImage
         private void plusImagePictureBox_MouseUp(object sender, MouseEventArgs e)
         {
