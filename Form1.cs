@@ -968,5 +968,39 @@ namespace PhotoShop_Marijiya
                 }
             }
         }
+
+        private void zoomInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox.Image == null) return;
+
+            // 1. Ambil gambar saat ini
+            Bitmap current = new Bitmap(pictureBox.Image);
+
+            // 2. Panggil ImageProcessor dengan faktor 1.25 (125%)
+            pictureBox.Image = ImageProcessor.ScaleImage(current, 1.25);
+
+            // 3. PENTING: Update array pixelData agar sinkron dengan ukuran baru
+            UpdatePixelDataFromPictureBox();
+
+            // 4. (Opsional) Refresh Histogram jika panelnya terbuka
+            // RefreshHistogram();
+        }
+
+        private void zoomOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pictureBox.Image == null) return;
+
+            // 1. Ambil gambar saat ini
+            Bitmap current = new Bitmap(pictureBox.Image);
+
+            // 2. Panggil ImageProcessor dengan faktor 0.8 (80%)
+            pictureBox.Image = ImageProcessor.ScaleImage(current, 0.8);
+
+            // 3. Update array pixelData
+            UpdatePixelDataFromPictureBox();
+
+            // 4. (Opsional) Refresh Histogram
+            // RefreshHistogram();
+        }
     }
 }

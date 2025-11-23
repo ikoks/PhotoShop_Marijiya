@@ -565,5 +565,36 @@ namespace PhotoShop_Marijiya
             }
             return bmp;
         }
+
+        /// <summary>
+        /// Mengubah ukuran gambar (Zoom In/Out) berdasarkan faktor skala.
+        /// </summary>
+        /// <param name="bmp">Gambar asli.</param>
+        /// <param name="factor">Faktor skala (misal: 1.25 untuk Zoom In 25%, 0.8 untuk Zoom Out).</param>
+        /// <returns>Bitmap baru dengan ukuran yang disesuaikan.</returns>
+        public static Bitmap ScaleImage(Bitmap bmp, double factor)
+        {
+            int newWidth = (int)(bmp.Width * factor);
+            int newHeight = (int)(bmp.Height * factor);
+
+            // Pastikan ukuran minimal 1x1 piksel agar tidak error
+            newWidth = Math.Max(1, newWidth);
+            newHeight = Math.Max(1, newHeight);
+
+            Bitmap newBmp = new Bitmap(newWidth, newHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(newBmp))
+            {
+                // Atur kualitas interpolasi agar gambar tidak pecah/buram saat di-zoom
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                // Gambar ulang dengan ukuran baru
+                g.DrawImage(bmp, 0, 0, newWidth, newHeight);
+            }
+
+            return newBmp;
+        }
     }
 }
