@@ -626,7 +626,7 @@ namespace PhotoShop_Marijiya
 
             Bitmap newBmp = new Bitmap(newWidth,newHeigth,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-            using (Graphics g = Graphics.FromImage(newBmp)
+            using (Graphics g = Graphics.FromImage(newBmp) ) 
             {
                 //kualitas tinggi
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;

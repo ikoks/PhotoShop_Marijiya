@@ -999,8 +999,89 @@ namespace PhotoShop_Marijiya
             // 3. Update array pixelData
             UpdatePixelDataFromPictureBox();
 
-            // 4. (Opsional) Refresh Histogram
-            // RefreshHistogram();
+
         }
+
+        //rotation 45 derajat
+        private void derajatToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotateFreeDegree(currentImg, 45);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 90 derajat
+        private void derajatToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate90(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 180 derajat
+        private void derajatToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate180(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 270 derajat
+        private void derajatToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate270(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+
+        //rotation free degree
+        private void freeDegreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            string input = Interaction.InputBox(
+                "Masukkan sudut rotasi (derajat, misal: 15, -30):",
+                "Free Rotation",
+                "0"
+            );
+
+            if (string.IsNullOrEmpty(input)) return; // Batal
+
+            float angle;
+            if (float.TryParse(input, out angle))
+            {
+                Bitmap current = new Bitmap(pictureBox.Image);
+                pictureBox.Image = ImageProcessor.rotateFreeDegree(current, angle);
+
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Masukkan angka yang valid.");
+            }
+        }
+
     }
 }
