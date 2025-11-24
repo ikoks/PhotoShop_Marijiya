@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using System.Drawing;
 
 namespace PhotoShop_Marijiya
 {
@@ -566,12 +567,6 @@ namespace PhotoShop_Marijiya
             return bmp;
         }
 
-        /// <summary>
-        /// Mengubah ukuran gambar (Zoom In/Out) berdasarkan faktor skala.
-        /// </summary>
-        /// <param name="bmp">Gambar asli.</param>
-        /// <param name="factor">Faktor skala (misal: 1.25 untuk Zoom In 25%, 0.8 untuk Zoom Out).</param>
-        /// <returns>Bitmap baru dengan ukuran yang disesuaikan.</returns>
         public static Bitmap ScaleImage(Bitmap bmp, double factor)
         {
             int newWidth = (int)(bmp.Width * factor);
@@ -596,5 +591,61 @@ namespace PhotoShop_Marijiya
 
             return newBmp;
         }
+
+        public static Bitmap rotate90(Bitmap bmp)
+        {
+            Bitmap newBmp = (Bitmap)bmp.Clone();
+            newBmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            return newBmp;
+        }
+
+        public static Bitmap rotate180(Bitmap bmp)
+        {
+            Bitmap newBmp = (Bitmap)bmp.Clone();
+            newBmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            return newBmp;
+        }
+
+        public static Bitmap rotate270(Bitmap bmp)
+        {
+            Bitmap newBmp = (Bitmap)bmp.Clone();
+            newBmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            return newBmp;
+        }
+
+        public static Bitmap rotateFreeDegree(Bitmap bmp, float degree)
+        {
+            // menghitung radians
+            double radians = degree * Math.PI / 180.0;
+            double cos = Math.Abs(Math.Cos(radians));
+            double sin = Math.Abs(Math.Sin(radians));
+
+            //kanvas baru
+            int newWidth = (int)Math.Round(bmp.Width * cos + bmp.Height * sin);
+            int newHeigth = (int)Math.Round(bmp.Height * cos + bmp.Width * sin);
+
+            Bitmap newBmp = new Bitmap(newWidth,newHeigth,System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (Graphics g = Graphics.FromImage(newBmp)
+            {
+                //kualitas tinggi
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+                // Pindahkan titik pusat ke tengah kanvas baru
+                g.TranslateTransform(newWidth / 2.0f, newHeigth / 2.0f);
+
+                // Putar
+                g.RotateTransform(degree);
+
+                // Geser balik agar menggambar dari posisi yang benar
+                g.TranslateTransform(-bmp.Width / 2.0f, -bmp.Height / 2.0f);
+
+                g.DrawImage(bmp, new Point(0, 0));
+            }
+
+            return newBmp;
+
+        }
+
     }
 }
