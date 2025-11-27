@@ -1083,5 +1083,78 @@ namespace PhotoShop_Marijiya
             }
         }
 
+        #region DistorsiGambar
+        private void waveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Minta input amplitudo
+            string inputAmp = Interaction.InputBox("Masukkan Amplitudo (Tinggi Gelombang, misal: 20):", "Wave Effect", "20");
+            if (string.IsNullOrEmpty(inputAmp)) return;
+
+            // Minta input frekuensi
+            string inputFreq = Interaction.InputBox("Masukkan Frekuensi (Kerapatan, misal: 0.05):", "Wave Effect", "0.05");
+            if (string.IsNullOrEmpty(inputFreq)) return;
+
+            if (double.TryParse(inputAmp, out double amp) && double.TryParse(inputFreq, out double freq))
+            {
+                Bitmap current = new Bitmap(pictureBox.Image);
+
+                Cursor = Cursors.WaitCursor;
+                pictureBox.Image = ImageProcessor.ApplyWave(current, amp, freq);
+                Cursor = Cursors.Default;
+
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid.");
+            }
+        }
+
+        private void swirlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Minta input kekuatan
+            string input = Interaction.InputBox(
+                "Masukkan kekuatan pusaran (Saran: 0.01 sampai 0.05):",
+                "Swirl Effect",
+                "0.02"
+            );
+
+            if (string.IsNullOrEmpty(input)) return;
+
+            if (double.TryParse(input, out double degree))
+            {
+                // Ambil gambar saat ini
+                // (Gunakan masterBitmap jika Anda sudah menerapkan sistem Zoom untuk kualitas terbaik)
+                Bitmap current = new Bitmap(pictureBox.Image);
+
+                // Proses
+                Cursor = Cursors.WaitCursor; // Ubah kursor jadi loading karena ini agak berat
+                pictureBox.Image = ImageProcessor.ApplySwirl(current, degree);
+                Cursor = Cursors.Default;
+
+                // Update Data
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid.");
+            }
+        }
+
+        #endregion
     }
 }
