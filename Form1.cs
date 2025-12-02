@@ -999,8 +999,162 @@ namespace PhotoShop_Marijiya
             // 3. Update array pixelData
             UpdatePixelDataFromPictureBox();
 
-            // 4. (Opsional) Refresh Histogram
-            // RefreshHistogram();
+
         }
+
+        //rotation 45 derajat
+        private void derajatToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotateFreeDegree(currentImg, 45);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 90 derajat
+        private void derajatToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate90(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 180 derajat
+        private void derajatToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate180(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+        //rotation 270 derajat
+        private void derajatToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            Bitmap currentImg = new Bitmap(pictureBox.Image);
+
+            pictureBox.Image = ImageProcessor.rotate270(currentImg);
+
+            UpdatePixelDataFromPictureBox();
+            RefreshHistogram();
+        }
+
+
+        //rotation free degree
+        private void freeDegreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null) return;
+
+            string input = Interaction.InputBox(
+                "Masukkan sudut rotasi (derajat, misal: 15, -30):",
+                "Free Rotation",
+                "0"
+            );
+
+            if (string.IsNullOrEmpty(input)) return; // Batal
+
+            float angle;
+            if (float.TryParse(input, out angle))
+            {
+                Bitmap current = new Bitmap(pictureBox.Image);
+                pictureBox.Image = ImageProcessor.rotateFreeDegree(current, angle);
+
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Masukkan angka yang valid.");
+            }
+        }
+
+        #region DistorsiGambar
+        private void waveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Minta input amplitudo
+            string inputAmp = Interaction.InputBox("Masukkan Amplitudo (Tinggi Gelombang, misal: 20):", "Wave Effect", "20");
+            if (string.IsNullOrEmpty(inputAmp)) return;
+
+            // Minta input frekuensi
+            string inputFreq = Interaction.InputBox("Masukkan Frekuensi (Kerapatan, misal: 0.05):", "Wave Effect", "0.05");
+            if (string.IsNullOrEmpty(inputFreq)) return;
+
+            if (double.TryParse(inputAmp, out double amp) && double.TryParse(inputFreq, out double freq))
+            {
+                Bitmap current = new Bitmap(pictureBox.Image);
+
+                Cursor = Cursors.WaitCursor;
+                pictureBox.Image = ImageProcessor.ApplyWave(current, amp, freq);
+                Cursor = Cursors.Default;
+
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid.");
+            }
+        }
+
+        private void swirlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Minta input kekuatan
+            string input = Interaction.InputBox(
+                "Masukkan kekuatan pusaran (Saran: 0.01 sampai 0.05):",
+                "Swirl Effect",
+                "0.02"
+            );
+
+            if (string.IsNullOrEmpty(input)) return;
+
+            if (double.TryParse(input, out double degree))
+            {
+                // Ambil gambar saat ini
+                // (Gunakan masterBitmap jika Anda sudah menerapkan sistem Zoom untuk kualitas terbaik)
+                Bitmap current = new Bitmap(pictureBox.Image);
+
+                // Proses
+                Cursor = Cursors.WaitCursor; // Ubah kursor jadi loading karena ini agak berat
+                pictureBox.Image = ImageProcessor.ApplySwirl(current, degree);
+                Cursor = Cursors.Default;
+
+                // Update Data
+                UpdatePixelDataFromPictureBox();
+                RefreshHistogram();
+            }
+            else
+            {
+                MessageBox.Show("Input tidak valid.");
+            }
+        }
+
+        #endregion
     }
 }
