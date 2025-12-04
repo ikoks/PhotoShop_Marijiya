@@ -1156,5 +1156,39 @@ namespace PhotoShop_Marijiya
         }
 
         #endregion
+
+        private void filteringToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (pixelData == null)
+            {
+                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
+                return;
+            }
+
+            // Buka Form Dialog Konvolusi
+            using (ConvolutionForms form = new ConvolutionForms())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // Jika user klik OK, ambil datanya
+                    double[,] kernel = form.Kernel;
+                    double factor = form.Factor;
+                    int bias = form.Bias;
+
+                    // (Menggunakan WaitCursor karena konvolusi berat)
+                    this.Cursor = Cursors.WaitCursor;
+
+                    Bitmap result = ImageProcessor.ApplyConvolution(pixelData, kernel, factor, bias);
+
+                    pictureBox.Image = result;
+                    UpdatePixelDataFromPictureBox();
+
+                    RefreshHistogram();
+                    this.Cursor = Cursors.Default;
+
+                    MessageBox.Show("Filter Konvolusi berhasil diterapkan!");
+                }
+            }
+        }
     }
 }

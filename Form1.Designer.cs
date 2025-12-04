@@ -113,6 +113,7 @@
             distorsiToolStripButton = new ToolStripDropDownButton();
             waveToolStripMenuItem = new ToolStripMenuItem();
             swirlToolStripMenuItem = new ToolStripMenuItem();
+            filteringToolStripButton = new ToolStripButton();
             zoomInToolStripMenuItem1 = new ToolStripMenuItem();
             toolStripSplitButton1 = new ToolStripSplitButton();
             BottomToolStripPanel = new ToolStripPanel();
@@ -133,7 +134,6 @@
             imageToolStripMenuItem2 = new ToolStripMenuItem();
             angkaToolStripMenuItem1 = new ToolStripMenuItem();
             clearImageToolStripMenuItem1 = new ToolStripMenuItem();
-            filteringToolStripButton = new ToolStripButton();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
@@ -820,16 +820,29 @@
             // waveToolStripMenuItem
             // 
             waveToolStripMenuItem.Name = "waveToolStripMenuItem";
-            waveToolStripMenuItem.Size = new Size(180, 22);
+            waveToolStripMenuItem.Size = new Size(100, 22);
             waveToolStripMenuItem.Text = "Wave";
             waveToolStripMenuItem.Click += waveToolStripMenuItem_Click;
             // 
             // swirlToolStripMenuItem
             // 
             swirlToolStripMenuItem.Name = "swirlToolStripMenuItem";
-            swirlToolStripMenuItem.Size = new Size(180, 22);
+            swirlToolStripMenuItem.Size = new Size(100, 22);
             swirlToolStripMenuItem.Text = "Swirl";
             swirlToolStripMenuItem.Click += swirlToolStripMenuItem_Click;
+            // 
+            // filteringToolStripButton
+            // 
+            filteringToolStripButton.BackColor = SystemColors.ControlLightLight;
+            filteringToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            filteringToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            filteringToolStripButton.Image = (Image)resources.GetObject("filteringToolStripButton.Image");
+            filteringToolStripButton.ImageTransparentColor = Color.Magenta;
+            filteringToolStripButton.Name = "filteringToolStripButton";
+            filteringToolStripButton.Size = new Size(38, 28);
+            filteringToolStripButton.Text = "toolStripButton1";
+            filteringToolStripButton.ToolTipText = "Filters";
+            filteringToolStripButton.Click += filteringToolStripButton_Click;
             // 
             // zoomInToolStripMenuItem1
             // 
@@ -1005,18 +1018,6 @@
             clearImageToolStripMenuItem1.Size = new Size(130, 22);
             clearImageToolStripMenuItem1.Text = "Clear Image";
             clearImageToolStripMenuItem1.Click += deleteImageToolStripMenuItem_Click;
-            // 
-            // filteringToolStripButton
-            // 
-            filteringToolStripButton.BackColor = SystemColors.ControlLightLight;
-            filteringToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            filteringToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            filteringToolStripButton.Image = (Image)resources.GetObject("filteringToolStripButton.Image");
-            filteringToolStripButton.ImageTransparentColor = Color.Magenta;
-            filteringToolStripButton.Name = "filteringToolStripButton";
-            filteringToolStripButton.Size = new Size(38, 28);
-            filteringToolStripButton.Text = "toolStripButton1";
-            filteringToolStripButton.ToolTipText = "Filters";
             // 
             // Form1
             // 
