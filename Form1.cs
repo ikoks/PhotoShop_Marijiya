@@ -1170,23 +1170,39 @@ namespace PhotoShop_Marijiya
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    // Jika user klik OK, ambil datanya
-                    double[,] kernel = form.Kernel;
-                    double factor = form.Factor;
-                    int bias = form.Bias;
+                    // 3. JIKA USER KLIK "OK" -> AMBIL DATA DARI FORM
+                    double[,] kernel = form.Kernel; // Ambil matriks angka
+                    double factor = form.Factor;    // Ambil pembagi
+                    int bias = form.Bias;           // Ambil bias
 
-                    // (Menggunakan WaitCursor karena konvolusi berat)
+                    // Ubah kursor jadi loading (karena konvolusi itu berat)
                     this.Cursor = Cursors.WaitCursor;
 
-                    Bitmap result = ImageProcessor.ApplyConvolution(pixelData, kernel, factor, bias);
+                    try
+                    {
+                        // 4. KIRIM DATA KE IMAGEPROCESSOR
+                        Bitmap result = ImageProcessor.ApplyConvolution(pixelData, kernel, factor, bias);
 
-                    pictureBox.Image = result;
-                    UpdatePixelDataFromPictureBox();
+                        // 5. TAMPILKAN HASILNYA
+                        pictureBox.Image = result;
 
-                    RefreshHistogram();
-                    this.Cursor = Cursors.Default;
+                        // 6. UPDATE DATA UTAMA (PENTING!)
+                        UpdatePixelDataFromPictureBox();
 
-                    MessageBox.Show("Filter Konvolusi berhasil diterapkan!");
+                        // 7. Refresh Histogram
+                        RefreshHistogram();
+
+                        MessageBox.Show("Filter Konvolusi berhasil diterapkan!");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Terjadi kesalahan: " + ex.Message);
+                    }
+                    finally
+                    {
+                        // Kembalikan kursor jadi normal
+                        this.Cursor = Cursors.Default;
+                    }
                 }
             }
         }

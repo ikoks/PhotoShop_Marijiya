@@ -48,7 +48,7 @@
             numSize.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
             numSize.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             numSize.Name = "numSize";
-            numSize.Size = new Size(114, 25);
+            numSize.Size = new Size(114, 28);
             numSize.TabIndex = 0;
             numSize.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
@@ -60,6 +60,7 @@
             btnGenerate.TabIndex = 1;
             btnGenerate.Text = "Buat Kernel";
             btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.Click += btnGenerate_Click;
             // 
             // panelGrid
             // 
@@ -74,7 +75,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(153, 311);
             label1.Name = "label1";
-            label1.Size = new Size(114, 17);
+            label1.Size = new Size(138, 20);
             label1.TabIndex = 3;
             label1.Text = "Factor (Pembagi):";
             // 
@@ -82,7 +83,7 @@
             // 
             txtFactor.Location = new Point(243, 308);
             txtFactor.Name = "txtFactor";
-            txtFactor.Size = new Size(100, 25);
+            txtFactor.Size = new Size(100, 28);
             txtFactor.TabIndex = 4;
             txtFactor.Text = "1";
             // 
@@ -91,7 +92,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(391, 311);
             label2.Name = "label2";
-            label2.Size = new Size(89, 17);
+            label2.Size = new Size(106, 20);
             label2.TabIndex = 5;
             label2.Text = "Bias (Offset):";
             // 
@@ -99,7 +100,7 @@
             // 
             txtBias.Location = new Point(462, 309);
             txtBias.Name = "txtBias";
-            txtBias.Size = new Size(100, 25);
+            txtBias.Size = new Size(100, 28);
             txtBias.TabIndex = 6;
             txtBias.Text = "0";
             // 
@@ -126,7 +127,7 @@
             // 
             // ConvolutionForms
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(10F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
