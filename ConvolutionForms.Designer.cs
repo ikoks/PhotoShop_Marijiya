@@ -48,7 +48,7 @@
             numSize.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
             numSize.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
             numSize.Name = "numSize";
-            numSize.Size = new Size(114, 21);
+            numSize.Size = new Size(114, 25);
             numSize.TabIndex = 0;
             numSize.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
@@ -68,23 +68,21 @@
             panelGrid.Name = "panelGrid";
             panelGrid.Size = new Size(433, 215);
             panelGrid.TabIndex = 2;
-            panelGrid.Paint += this.flowLayoutPanel1_Paint;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(153, 311);
             label1.Name = "label1";
-            label1.Size = new Size(92, 15);
+            label1.Size = new Size(114, 17);
             label1.TabIndex = 3;
             label1.Text = "Factor (Pembagi):";
-            label1.Click += this.label1_Click;
             // 
             // txtFactor
             // 
             txtFactor.Location = new Point(243, 308);
             txtFactor.Name = "txtFactor";
-            txtFactor.Size = new Size(100, 21);
+            txtFactor.Size = new Size(100, 25);
             txtFactor.TabIndex = 4;
             txtFactor.Text = "1";
             // 
@@ -93,7 +91,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(391, 311);
             label2.Name = "label2";
-            label2.Size = new Size(73, 15);
+            label2.Size = new Size(89, 17);
             label2.TabIndex = 5;
             label2.Text = "Bias (Offset):";
             // 
@@ -101,7 +99,7 @@
             // 
             txtBias.Location = new Point(462, 309);
             txtBias.Name = "txtBias";
-            txtBias.Size = new Size(100, 21);
+            txtBias.Size = new Size(100, 25);
             txtBias.TabIndex = 6;
             txtBias.Text = "0";
             // 
@@ -114,7 +112,7 @@
             btnOK.TabIndex = 7;
             btnOK.Text = "Terapkan (Apply)";
             btnOK.UseVisualStyleBackColor = true;
-            btnOK.Click += this.btnOK_Click;
+            btnOK.Click += btnOK_Click;
             // 
             // btnCancel
             // 
@@ -125,11 +123,10 @@
             btnCancel.TabIndex = 8;
             btnCancel.Text = "Batal";
             btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += this.btnCancel_Click;
             // 
             // ConvolutionForms
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(800, 450);
