@@ -1,6 +1,11 @@
 namespace PhotoShop_Marijiya
 {
     using Microsoft.VisualBasic;
+    using PhotoShop_Marijiya.Logic.Arithmetic;
+    using PhotoShop_Marijiya.Logic.Colors;
+    using PhotoShop_Marijiya.Logic.Distortion;
+    using PhotoShop_Marijiya.Logic.Filter;
+    using PhotoShop_Marijiya.Logic.Transform;
     using System;
     using System.Diagnostics.Metrics;
     using System.Windows.Forms;
@@ -110,169 +115,6 @@ namespace PhotoShop_Marijiya
             }
         }
 
-        // Method untuk menerapkan efek warna merah
-        private void redColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            // Panggil kelas ImageProcessor
-            pictureBox.Image = ImageProcessor.ApplyRedChannel(pixelData);
-            MessageBox.Show("Efek warna merah diterapkan!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-        }
-
-        // Method untuk menerapkan efek warna hijau
-        private void greenColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            // Panggil kelas ImageProcessor
-            pictureBox.Image = ImageProcessor.ApplyGreenChannel(pixelData);
-            MessageBox.Show("Efek warna hijau diterapkan!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-        }
-
-        // Method untuk menerapkan efek warna biru
-        private void blueColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            pictureBox.Image = ImageProcessor.ApplyBlueChannel(pixelData);
-            MessageBox.Show("Efek warna biru diterapkan!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-        }
-
-        // Method untuk menerapkan efek grayscale
-        private void grayscaleColorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            pictureBox.Image = ImageProcessor.ApplyGrayscale(pixelData);
-            MessageBox.Show("Efek grayscale diterapkan!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-        }
-
-        // Method untuk mengembalikan gambar ke kondisi normal
-        private void normalImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (originalImage == null)
-            {
-                MessageBox.Show("Belum ada gambar yang dimuat.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Tampilkan kembali gambar asli ke PictureBox
-            pictureBox.Image = new Bitmap(originalImage);
-            MessageBox.Show("Gambar dikembalikan ke kondisi normal!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-
-            // Reset mode edit dan sembunyikan slider jika aktif
-            sliderBar.Visible = false;
-            currentMode = EditMode.None;
-            pictureBox.Cursor = Cursors.Default;
-            detectionColorToolStripButton.Checked = false;
-        }
-
-        // Method untuk menerapkan efek negatif
-        private void negativeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Cek apakah ada gambar
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            // 2. Panggil kelas ImageProcessor untuk melakukan pekerjaan
-            pictureBox.Image = ImageProcessor.ApplyNegative(pixelData);
-
-            MessageBox.Show("Efek negatif diterapkan!");
-
-            // Perbarui pixelData dari gambar di PictureBox
-            UpdatePixelDataFromPictureBox();
-
-            // Refresh histogram
-            RefreshHistogram();
-        }
-
-        // Method untuk menerapkan efek black & white
-        private void blackAndWhiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Silakan tambahkan gambar terlebih dahulu.");
-                return;
-            }
-
-            //Kondisional mematikan trackbar
-            if (currentMode == EditMode.BlackWhite)
-            {
-                sliderBar.Visible = false;      // Sembunyikan slider
-                currentMode = EditMode.None;    // Reset mode
-
-                return; // Selesai
-            }
-
-            // Set mode edit ke Black & White
-            currentMode = EditMode.BlackWhite;
-
-            // Tampilkan slider
-            sliderBar.Visible = true;
-            sliderBar.Minimum = 0;
-            sliderBar.Maximum = 256;
-            sliderBar.Value = 128; // Nilai tengah default
-            sliderBar.TickFrequency = 10;
-
-            // Tampilkan gambar awal
-            pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData, sliderBar.Value);
-
-            // Refresh histogram
-            RefreshHistogram();
-
-            MessageBox.Show("Geser slider untuk mengatur ambang batas Black & White.");
-        }
-
         // Method untuk mengaktifkan mode brightness
         private void brightnestoolStripButton_Click(object sender, EventArgs e)
         {
@@ -301,7 +143,7 @@ namespace PhotoShop_Marijiya
             sliderBar.Value = 0;        // Atur nilai default
             sliderBar.TickFrequency = 10;
 
-            pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, sliderBar.Value);
+            pictureBox.Image = Brightness.ApplyBrightness(pixelData, sliderBar.Value);
         }
 
         // Method untuk menangani perubahan nilai slider
@@ -309,16 +151,14 @@ namespace PhotoShop_Marijiya
         {
             if (pixelData == null) return;
 
-            int value = sliderBar.Value;
-
             switch (currentMode)
             {
                 case EditMode.Brightness:
-                    pictureBox.Image = ImageProcessor.ApplyBrightness(pixelData, value);
+                    pictureBox.Image = Brightness.ApplyBrightness(pixelData, sliderBar.Value);
                     break;
 
                 case EditMode.BlackWhite:
-                    pictureBox.Image = ImageProcessor.ApplyBlackAndWhite(pixelData, value);
+                    pictureBox.Image = BWColor.ApplyBlackAndWhite(pixelData, sliderBar.Value);    
                     break;
 
                 case EditMode.None:
@@ -359,7 +199,7 @@ namespace PhotoShop_Marijiya
                 pickedColor = Color.FromArgb(R, G, B);
 
                 // Terapkan deteksi warna dengan warna yang baru dipilih
-                pictureBox.Image = ImageProcessor.ApplyColorDetection(pixelData, pickedColor);
+                pictureBox.Image = DetectionColor.ApplyColorDetection(pixelData, pickedColor);
 
                 // Perbarui pixelData dari gambar di PictureBox
                 UpdatePixelDataFromPictureBox();
@@ -474,7 +314,7 @@ namespace PhotoShop_Marijiya
                 }
 
                 // 3. Panggil metode untuk menjumlahkan (Original + Gambar 2)
-                Bitmap bmp = ImageProcessor.PlusArraysImage(pixelData1, pixelData2);
+                Bitmap bmp = PlusImage.PlusArraysImage(pixelData1, pixelData2);
 
                 // 4. Tampilkan hasilnya
                 pictureBox.Image = bmp;
@@ -543,8 +383,7 @@ namespace PhotoShop_Marijiya
                 }
 
                 // 3. Panggil metode untuk mengurangkan (Original - Gambar 2)
-                //    (Saya asumsikan Anda ingin menggunakan ApplyDifference)
-                Bitmap bmp = ImageProcessor.MinArraysImage(pixelData1, pixelData2);
+                Bitmap bmp = MinImage.MinArraysImage(pixelData1, pixelData2);
 
                 // 4. Tampilkan hasilnya
                 pictureBox.Image = bmp;
@@ -615,7 +454,7 @@ namespace PhotoShop_Marijiya
             if (double.TryParse(input, out value))
             {
                 // 2. Panggil fungsi 'ApplyMultiply'
-                pictureBox.Image = ImageProcessor.ApplyMultiply(pixelData, value);
+                pictureBox.Image = Multiply.ApplyMultiply(pixelData, value);
 
                 // 3. Update state
                 UpdatePixelDataFromPictureBox();
@@ -656,7 +495,7 @@ namespace PhotoShop_Marijiya
                 }
 
                 // 3. Panggil fungsi 'ApplyDivide'
-                pictureBox.Image = ImageProcessor.ApplyDivide(pixelData, value);
+                pictureBox.Image = Divide.ApplyDivide(pixelData, value);
 
                 // 4. Update state
                 UpdatePixelDataFromPictureBox();
@@ -708,7 +547,7 @@ namespace PhotoShop_Marijiya
                 }
 
                 // --- UBAH FUNGSI YANG DIPANGGIL ---
-                Bitmap bmp = ImageProcessor.ApplyMultiplyImage(pixelData1, pixelData2);
+                Bitmap bmp = Multiply.ApplyMultiplyImage(pixelData1, pixelData2);
 
                 pictureBox.Image = bmp;
                 UpdatePixelDataFromPictureBox();
@@ -771,7 +610,7 @@ namespace PhotoShop_Marijiya
                 }
 
                 // --- UBAH FUNGSI YANG DIPANGGIL ---
-                Bitmap bmp = ImageProcessor.ApplyDivideImage(pixelData1, pixelData2);
+                Bitmap bmp = Divide.ApplyDivideImage(pixelData1, pixelData2);
 
                 pictureBox.Image = bmp;
                 UpdatePixelDataFromPictureBox();
@@ -832,7 +671,7 @@ namespace PhotoShop_Marijiya
                     throw new Exception("Gagal mengonversi gambar kedua.");
                 }
 
-                Bitmap bmp = ImageProcessor.ApplyBitwiseAND(pixelData1, pixelData2);
+                Bitmap bmp = Bitwise.ApplyBitwiseAND(pixelData1, pixelData2);
 
                 pictureBox.Image = bmp;
                 UpdatePixelDataFromPictureBox();
@@ -890,7 +729,7 @@ namespace PhotoShop_Marijiya
                     throw new Exception("Gagal mengonversi gambar kedua.");
                 }
 
-                Bitmap bmp = ImageProcessor.ApplyBitwiseOR(pixelData1, pixelData2);
+                Bitmap bmp = Bitwise.ApplyBitwiseOR(pixelData1, pixelData2);
 
                 pictureBox.Image = bmp;
                 UpdatePixelDataFromPictureBox();
@@ -949,7 +788,7 @@ namespace PhotoShop_Marijiya
                     throw new Exception("Gagal mengonversi gambar kedua.");
                 }
 
-                Bitmap bmp = ImageProcessor.ApplyBitwiseXOR(pixelData1, pixelData2);
+                Bitmap bmp = Bitwise.ApplyBitwiseXOR(pixelData1, pixelData2);
 
                 pictureBox.Image = bmp;
                 UpdatePixelDataFromPictureBox();
@@ -977,7 +816,7 @@ namespace PhotoShop_Marijiya
             Bitmap current = new Bitmap(pictureBox.Image);
 
             // 2. Panggil ImageProcessor dengan faktor 1.25 (125%)
-            pictureBox.Image = ImageProcessor.ScaleImage(current, 1.25);
+            pictureBox.Image = ScaleImage.ApplyScaleImage(current, 1.25);
 
             // 3. PENTING: Update array pixelData agar sinkron dengan ukuran baru
             UpdatePixelDataFromPictureBox();
@@ -994,7 +833,7 @@ namespace PhotoShop_Marijiya
             Bitmap current = new Bitmap(pictureBox.Image);
 
             // 2. Panggil ImageProcessor dengan faktor 0.8 (80%)
-            pictureBox.Image = ImageProcessor.ScaleImage(current, 0.8);
+            pictureBox.Image = ScaleImage.ApplyScaleImage(current, 0.8);
 
             // 3. Update array pixelData
             UpdatePixelDataFromPictureBox();
@@ -1009,7 +848,7 @@ namespace PhotoShop_Marijiya
 
             Bitmap currentImg = new Bitmap(pictureBox.Image);
 
-            pictureBox.Image = ImageProcessor.rotateFreeDegree(currentImg, 45);
+            pictureBox.Image = Rotation.rotateFreeDegree(currentImg, 45);
 
             UpdatePixelDataFromPictureBox();
             RefreshHistogram();
@@ -1022,7 +861,7 @@ namespace PhotoShop_Marijiya
 
             Bitmap currentImg = new Bitmap(pictureBox.Image);
 
-            pictureBox.Image = ImageProcessor.rotate90(currentImg);
+            pictureBox.Image = Rotation.rotate90(currentImg);
 
             UpdatePixelDataFromPictureBox();
             RefreshHistogram();
@@ -1035,7 +874,7 @@ namespace PhotoShop_Marijiya
 
             Bitmap currentImg = new Bitmap(pictureBox.Image);
 
-            pictureBox.Image = ImageProcessor.rotate180(currentImg);
+            pictureBox.Image = Rotation.rotate180(currentImg);
 
             UpdatePixelDataFromPictureBox();
             RefreshHistogram();
@@ -1048,7 +887,7 @@ namespace PhotoShop_Marijiya
 
             Bitmap currentImg = new Bitmap(pictureBox.Image);
 
-            pictureBox.Image = ImageProcessor.rotate270(currentImg);
+            pictureBox.Image = Rotation.rotate270(currentImg);
 
             UpdatePixelDataFromPictureBox();
             RefreshHistogram();
@@ -1072,7 +911,7 @@ namespace PhotoShop_Marijiya
             if (float.TryParse(input, out angle))
             {
                 Bitmap current = new Bitmap(pictureBox.Image);
-                pictureBox.Image = ImageProcessor.rotateFreeDegree(current, angle);
+                pictureBox.Image = Rotation.rotateFreeDegree(current, angle);
 
                 UpdatePixelDataFromPictureBox();
                 RefreshHistogram();
@@ -1105,7 +944,7 @@ namespace PhotoShop_Marijiya
                 Bitmap current = new Bitmap(pictureBox.Image);
 
                 Cursor = Cursors.WaitCursor;
-                pictureBox.Image = ImageProcessor.ApplyWave(current, amp, freq);
+                pictureBox.Image = WaveDistortion.ApplyWave(current, amp, freq);
                 Cursor = Cursors.Default;
 
                 UpdatePixelDataFromPictureBox();
@@ -1142,7 +981,7 @@ namespace PhotoShop_Marijiya
 
                 // Proses
                 Cursor = Cursors.WaitCursor; // Ubah kursor jadi loading karena ini agak berat
-                pictureBox.Image = ImageProcessor.ApplySwirl(current, degree);
+                pictureBox.Image = SwirlDistortion.ApplySwirl(current, degree);
                 Cursor = Cursors.Default;
 
                 // Update Data
@@ -1181,7 +1020,7 @@ namespace PhotoShop_Marijiya
                     try
                     {
                         // 4. KIRIM DATA KE IMAGEPROCESSOR
-                        Bitmap result = ImageProcessor.ApplyConvolution(pixelData, kernel, factor, bias);
+                        Bitmap result = Convolution.ApplyConvolution(pixelData, kernel, factor, bias);
 
                         // 5. TAMPILKAN HASILNYA
                         pictureBox.Image = result;
