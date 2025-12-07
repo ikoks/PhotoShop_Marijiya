@@ -8,9 +8,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace PhotoShop_Marijiya
+namespace PhotoShop_Marijiya.Logic.Histogram
 {
-    public static class HistogramManager
+    public static class Histogram
     {
         // Fungsi membuat panel histogram
         public static Panel CreateHistogramPanel(Bitmap bmp)
