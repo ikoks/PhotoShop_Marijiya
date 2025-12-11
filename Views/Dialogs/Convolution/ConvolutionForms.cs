@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PhotoShop_Marijiya.Logic.Filter;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -91,6 +92,54 @@ namespace PhotoShop_Marijiya
                 // Jangan tutup form agar user bisa perbaiki
                 this.DialogResult = DialogResult.None;
             }
+        }
+
+        private void pilihKernelcomboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string pilihan = pilihKernelcomboBox.SelectedItem.ToString();
+
+            // 1. Set Factor & Bias default
+            this.Factor = 1.0;
+            this.Bias = 0;
+
+            // 2. Isi Kernel langsung dari Logic (Bypassing Grid UI)
+            switch (pilihan)
+            {
+                // --- SOBEL ---
+                case "Sobel Horizontal":
+                    this.Kernel = filterSobel.Gx;
+                    break;
+
+                case "Sobel Vertical":
+                    this.Kernel = filterSobel.Gy;
+                    break;
+
+                // --- PREWITT ---
+                case "Prewitt Horizontal":
+                    this.Kernel = FilterPrewitt.Gx;
+                    break;
+
+                case "Prewitt Vertical":
+                    this.Kernel = FilterPrewitt.Gy;
+                    break;
+
+                // --- ROBERT ---
+                case "Robert Cross X":
+                    this.Kernel = FilterRobert.Gx;
+                    break;
+
+                case "Robert Cross Y":
+                    this.Kernel = FilterRobert.Gy;
+                    break;
+
+            }
+
+            // 3. TUTUP FORM SECARA OTOMATIS (Auto-Submit)
+            // Ini membuat Form1 mengira user baru saja menekan tombol OK
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+
+
         }
     }
 }
