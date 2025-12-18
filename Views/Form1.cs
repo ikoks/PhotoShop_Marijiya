@@ -41,18 +41,5 @@ namespace PhotoShop_Marijiya
 
         // Variabel untuk menyimpan mode edit saat ini
         private EditMode currentMode = EditMode.None;
-
-        private void histogramEqualizationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (pixelData == null)
-            {
-                MessageBox.Show("Masukkan gambar terlebih dahulu");
-                
-                return;
-            }
-
-            pictureBox.Image = HistogramEqualization.ApplyNormalization(pixelData);
-
-        }
     }
 }
