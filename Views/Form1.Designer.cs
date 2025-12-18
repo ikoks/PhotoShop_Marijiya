@@ -103,7 +103,6 @@
             insertImageToolStripButton = new ToolStripButton();
             plusImageToolStripButton = new ToolStripButton();
             saveAsTxtToolStripButton = new ToolStripButton();
-            histogramImageToolStripButton = new ToolStripButton();
             brightnestoolStripButton = new ToolStripButton();
             detectionColorToolStripButton = new ToolStripButton();
             citraBinerToolStripButton = new ToolStripSplitButton();
@@ -134,6 +133,11 @@
             imageToolStripMenuItem2 = new ToolStripMenuItem();
             angkaToolStripMenuItem1 = new ToolStripMenuItem();
             clearImageToolStripMenuItem1 = new ToolStripMenuItem();
+            histogramToolStripDropDownButton = new ToolStripDropDownButton();
+            histogramToolStripMenuItem = new ToolStripMenuItem();
+            histogramEqualizationToolStripMenuItem = new ToolStripMenuItem();
+            linearStretchToolStripMenuItem = new ToolStripMenuItem();
+            adaptiveHistogramEqualizationToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderBar).BeginInit();
@@ -698,7 +702,7 @@
             // 
             toolStrip1.Dock = DockStyle.Left;
             toolStrip1.ImageScalingSize = new Size(24, 24);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { insertImageToolStripButton, plusImageToolStripButton, saveAsTxtToolStripButton, histogramImageToolStripButton, brightnestoolStripButton, detectionColorToolStripButton, citraBinerToolStripButton, distorsiToolStripButton, filteringToolStripButton });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { insertImageToolStripButton, plusImageToolStripButton, saveAsTxtToolStripButton, brightnestoolStripButton, detectionColorToolStripButton, citraBinerToolStripButton, distorsiToolStripButton, filteringToolStripButton, histogramToolStripDropDownButton });
             toolStrip1.Location = new Point(0, 34);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(41, 411);
@@ -737,17 +741,6 @@
             saveAsTxtToolStripButton.Size = new Size(38, 28);
             saveAsTxtToolStripButton.Text = "Save As TXT";
             saveAsTxtToolStripButton.Click += saveImageTxtToolStripButton_Click;
-            // 
-            // histogramImageToolStripButton
-            // 
-            histogramImageToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            histogramImageToolStripButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            histogramImageToolStripButton.Image = (Image)resources.GetObject("histogramImageToolStripButton.Image");
-            histogramImageToolStripButton.ImageTransparentColor = Color.Magenta;
-            histogramImageToolStripButton.Name = "histogramImageToolStripButton";
-            histogramImageToolStripButton.Size = new Size(38, 28);
-            histogramImageToolStripButton.Text = "Histogram Image";
-            histogramImageToolStripButton.Click += histogramImageToolStripButton_Click;
             // 
             // brightnestoolStripButton
             // 
@@ -1019,6 +1012,42 @@
             clearImageToolStripMenuItem1.Text = "Clear Image";
             clearImageToolStripMenuItem1.Click += deleteImageToolStripMenuItem_Click;
             // 
+            // histogramToolStripDropDownButton
+            // 
+            histogramToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            histogramToolStripDropDownButton.DropDownItems.AddRange(new ToolStripItem[] { histogramToolStripMenuItem, histogramEqualizationToolStripMenuItem, linearStretchToolStripMenuItem, adaptiveHistogramEqualizationToolStripMenuItem });
+            histogramToolStripDropDownButton.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            histogramToolStripDropDownButton.Image = (Image)resources.GetObject("histogramToolStripDropDownButton.Image");
+            histogramToolStripDropDownButton.ImageTransparentColor = Color.Magenta;
+            histogramToolStripDropDownButton.Name = "histogramToolStripDropDownButton";
+            histogramToolStripDropDownButton.Size = new Size(38, 28);
+            histogramToolStripDropDownButton.Text = "Jenis Histogram";
+            // 
+            // histogramToolStripMenuItem
+            // 
+            histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+            histogramToolStripMenuItem.Size = new Size(235, 22);
+            histogramToolStripMenuItem.Text = "Histogram";
+            histogramToolStripMenuItem.Click += histogramToolStripMenuItem_Click;
+            // 
+            // histogramEqualizationToolStripMenuItem
+            // 
+            histogramEqualizationToolStripMenuItem.Name = "histogramEqualizationToolStripMenuItem";
+            histogramEqualizationToolStripMenuItem.Size = new Size(235, 22);
+            histogramEqualizationToolStripMenuItem.Text = "Histogram Equalization";
+            // 
+            // linearStretchToolStripMenuItem
+            // 
+            linearStretchToolStripMenuItem.Name = "linearStretchToolStripMenuItem";
+            linearStretchToolStripMenuItem.Size = new Size(235, 22);
+            linearStretchToolStripMenuItem.Text = "Linear Stretch";
+            // 
+            // adaptiveHistogramEqualizationToolStripMenuItem
+            // 
+            adaptiveHistogramEqualizationToolStripMenuItem.Name = "adaptiveHistogramEqualizationToolStripMenuItem";
+            adaptiveHistogramEqualizationToolStripMenuItem.Size = new Size(235, 22);
+            adaptiveHistogramEqualizationToolStripMenuItem.Text = "Adaptive Histogram Equalization";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(9F, 19F);
@@ -1126,7 +1155,6 @@
         private ToolStripMenuItem blueColorToolStripMenuItem;
         private ToolStripMenuItem grayscaleColorToolStripMenuItem;
         private ToolStripMenuItem normalImageToolStripMenuItem;
-        private ToolStripButton histogramImageToolStripButton;
         private TrackBar sliderBar;
         private ToolStripMenuItem blackAndWhiteToolStripMenuItem;
         private ToolStripMenuItem negativeToolStripMenuItem;
@@ -1156,5 +1184,10 @@
         private ToolStripMenuItem waveToolStripMenuItem;
         private ToolStripMenuItem swirlToolStripMenuItem;
         private ToolStripButton filteringToolStripButton;
+        private ToolStripDropDownButton histogramToolStripDropDownButton;
+        private ToolStripMenuItem histogramToolStripMenuItem;
+        private ToolStripMenuItem histogramEqualizationToolStripMenuItem;
+        private ToolStripMenuItem linearStretchToolStripMenuItem;
+        private ToolStripMenuItem adaptiveHistogramEqualizationToolStripMenuItem;
     }
 }
