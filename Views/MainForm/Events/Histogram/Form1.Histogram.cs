@@ -8,7 +8,7 @@ namespace PhotoShop_Marijiya
     public partial class Form1
     {
         // Method button histogram
-        private void histogramImageToolStripButton_Click(object sender, EventArgs e)
+        private void histogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Cek apakah ada gambar
             if (pictureBox.Image == null)

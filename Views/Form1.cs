@@ -5,6 +5,7 @@ namespace PhotoShop_Marijiya
     using PhotoShop_Marijiya.Logic.Colors;
     using PhotoShop_Marijiya.Logic.Distortion;
     using PhotoShop_Marijiya.Logic.Filter;
+    using PhotoShop_Marijiya.Logic.Histogram;
     using PhotoShop_Marijiya.Logic.Transform;
     using System;
     using System.Diagnostics.Metrics;
@@ -40,5 +41,7 @@ namespace PhotoShop_Marijiya
 
         // Variabel untuk menyimpan mode edit saat ini
         private EditMode currentMode = EditMode.None;
+
+       
     }
 }
