@@ -888,6 +888,7 @@
             softToolStripButton.Size = new Size(43, 28);
             softToolStripButton.Text = "Softening";
             softToolStripButton.TextAlign = ContentAlignment.MiddleLeft;
+            softToolStripButton.Click += softToolStripButton_Click;
             // 
             // sharpenToolStripButton
             // 

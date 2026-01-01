@@ -42,5 +42,5 @@ namespace PhotoShop_Marijiya
         // Variabel untuk menyimpan mode edit saat ini
         private EditMode currentMode = EditMode.None;
 
-    }
+       }
 }
