@@ -9,7 +9,7 @@ namespace PhotoShop_Marijiya.Logic.Colors
     internal class DetectionColor
     {
         // Fungsi Mendeteksi Warna Tertentu dalam Gambar
-        public static Bitmap ApplyColorDetection(byte[,,] pixelData, Color targetColor)
+        public static Bitmap ApplyDetection(byte[,,] pixelData, Color targetColor, int tolerance)
         {
             int height = pixelData.GetLength(0);
             int width = pixelData.GetLength(1);
@@ -19,19 +19,36 @@ namespace PhotoShop_Marijiya.Logic.Colors
             {
                 for (int x = 0; x < width; x++)
                 {
-                    byte R = pixelData[y, x, 0];
-                    byte G = pixelData[y, x, 1];
-                    byte B = pixelData[y, x, 2];
+                    byte r = pixelData[y, x, 0];
+                    byte g = pixelData[y, x, 1];
+                    byte b = pixelData[y, x, 2];
 
-                    Color currentColor = Color.FromArgb(R, G, B);
+                    // 1. Hitung Jarak Warna (Euclidean Distance)
+                    // Rumus ini mengukur seberapa jauh perbedaan warna pixel ini dengan warna target
+                    int diffR = r - targetColor.R;
+                    int diffG = g - targetColor.G;
+                    int diffB = b - targetColor.B;
 
-                    if (currentColor == targetColor)
+                    // Jarak akar kuadrat (lebih akurat daripada sekadar R+G+B)
+                    double distance = Math.Sqrt(diffR * diffR + diffG * diffG + diffB * diffB);
+
+                    // 2. Cek apakah masuk dalam toleransi?
+                    if (distance < tolerance)
                     {
-                        bmp.SetPixel(x, y, currentColor); // Pertahankan warna asli
+                        // JIKA COCOK (Warna Terseleksi):
+                        // Ubah jadi Abu-abu gelap (efek terarsir/hitam)
+                        int gray = (int)((r * 0.3) + (g * 0.59) + (b * 0.11));
+
+                        // Opsional: Bisa dibuat lebih gelap agar terlihat "terseleksi"
+                        // gray = gray / 2; 
+
+                        bmp.SetPixel(x, y, Color.FromArgb(gray, gray, gray));
                     }
                     else
                     {
-                        bmp.SetPixel(x, y, Color.Black); // Ubah jadi hitam
+                        // JIKA TIDAK COCOK:
+                        // Biarkan warna asli
+                        bmp.SetPixel(x, y, Color.FromArgb(r, g, b));
                     }
                 }
             }

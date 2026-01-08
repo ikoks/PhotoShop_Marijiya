@@ -9,42 +9,27 @@ namespace PhotoShop_Marijiya
         // Method untuk menangani klik mouse pada PictureBox
         private void pictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            Color pickedColor;
-
-            // Hanya aktif jika mode ColorDetection sedang berjalan
             if (currentMode == EditMode.ColorDetection)
             {
-                if (pixelData == null) return;
+                if (pixelData == null || pictureBox.Image == null) return;
 
-                // Pastikan klik di dalam batas gambar
-                if (e.X < 0 || e.X >= pictureBox.Image.Width ||
-                    e.Y < 0 || e.Y >= pictureBox.Image.Height)
+                // Validasi koordinat agar tidak error jika klik di luar gambar (jika SizeMode AutoSize/Center)
+                // Jika PictureBox SizeMode = Zoom, koordinat harus dikalibrasi. 
+                // Untuk simplifikasi (StretchImage/AutoSize), kita pakai e.X e.Y langsung.
+
+                if (e.X >= 0 && e.X < pictureBox.Image.Width && e.Y >= 0 && e.Y < pictureBox.Image.Height)
                 {
-                    return;
+                    // 1. AMBIL WARNA DARI ARRAY ASLI (Bukan dari PictureBox yang mungkin sudah diedit)
+                    // Mengambil dari pixelData menjamin kita mengambil warna murni
+                    byte r = pixelData[e.Y, e.X, 0];
+                    byte g = pixelData[e.Y, e.X, 1];
+                    byte b = pixelData[e.Y, e.X, 2];
+
+                    this.selectedDetectionColor = Color.FromArgb(r, g, b);
+
+                    // 2. Jalankan Logika Deteksi
+                    ApplyDetectionUpdate();
                 }
-
-                // Ambil warna dari posisi piksel yang diklik
-                // Penting: Ambil dari data piksel ASLI (pixelData) agar efek tidak menumpuk.
-                byte R = pixelData[e.Y, e.X, 0];
-                byte G = pixelData[e.Y, e.X, 1];
-                byte B = pixelData[e.Y, e.X, 2];
-
-                pickedColor = Color.FromArgb(R, G, B);
-
-                // Terapkan deteksi warna dengan warna yang baru dipilih
-                pictureBox.Image = DetectionColor.ApplyColorDetection(pixelData, pickedColor);
-
-                // Perbarui pixelData dari gambar di PictureBox
-                UpdatePixelDataFromPictureBox();
-
-                // Refresh histogram
-                RefreshHistogram();
-
-                //mematikan fungsi color detection
-                currentMode = EditMode.None;
-                pictureBox.Cursor = Cursors.Default;
-
-                MessageBox.Show($"Warna '{pickedColor.ToString()}' terdeteksi dan diterapkan.");
             }
         }
 
@@ -54,10 +39,49 @@ namespace PhotoShop_Marijiya
             if (pixelData == null)
             {
                 MessageBox.Show("Silahkan tambahkan gambar terlebih dahulu");
+                return;
             }
 
-            currentMode = EditMode.ColorDetection;
-            pictureBox.Cursor = Cursors.Cross;
+            // Jika tombol ditekan lagi, matikan mode
+            if (currentMode == EditMode.ColorDetection)
+            {
+                currentMode = EditMode.None;
+                sliderBar.Visible = false;
+                pictureBox.Cursor = Cursors.Default;
+                MessageBox.Show("Mode Deteksi Warna Dinonaktifkan.");
+            }
+            else
+            {
+                currentMode = EditMode.ColorDetection;
+                pictureBox.Cursor = Cursors.Cross; // Ubah kursor jadi tanda tambah
+
+                // Reset Slider
+                sliderBar.Visible = true;
+                sliderBar.Minimum = 0;
+                sliderBar.Maximum = 200; // Toleransi jarak warna (0-200 cukup)
+                sliderBar.Value = 50;    // Nilai default toleransi
+
+                MessageBox.Show("Mode Deteksi Warna Aktif.\n\n1. KLIK warna pada gambar.\n2. GESER slider untuk mengatur toleransi.");
+            }
+        }
+
+        //helper
+        private void ApplyDetectionUpdate()
+        {
+            // Cek apakah sudah ada warna yang dipilih
+            if (selectedDetectionColor == Color.Empty) return;
+
+            this.Cursor = Cursors.WaitCursor;
+
+            // Ambil nilai toleransi dari Slider
+            int tolerance = sliderBar.Value;
+
+            // Panggil Logic
+            Bitmap result = DetectionColor.ApplyDetection(pixelData, selectedDetectionColor, tolerance);
+
+            pictureBox.Image = result;
+        
+            this.Cursor = Cursors.Default;
         }
     }
 }

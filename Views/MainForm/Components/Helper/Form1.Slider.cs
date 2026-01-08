@@ -21,6 +21,11 @@ namespace PhotoShop_Marijiya
                     pictureBox.Image = BWColor.ApplyBlackAndWhite(pixelData, sliderBar.Value);
                     break;
 
+                case EditMode.ColorDetection:
+                    // Panggil helper yang tadi kita buat di Form1.Detection.cs
+                    ApplyDetectionUpdate();
+                    break;
+
                 case EditMode.None:
                 default:
                     return;

@@ -18,6 +18,7 @@ namespace PhotoShop_Marijiya
         private Bitmap originalImage;
         private Bitmap? secondLayerImage = null;
         private Panel histogramPanel;
+        private Color selectedDetectionColor = Color.Empty;
 
         public Form1()
         {
